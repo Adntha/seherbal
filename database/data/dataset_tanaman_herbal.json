@@ -1,0 +1,662 @@
+[
+  {
+    "ID": 1,
+    "Nama_Lokal": "Temulawak",
+    "Nama_Ilmiah_Latin": "Curcuma xanthorrhiza",
+    "Kategori_Famili": "Zingiberaceae (Rimpang)",
+    "Bagian_Digunakan": "Rimpang",
+    "Khasiat_Utama": "Penambah Nafsu Makan, Peluruh ASI, Perbaikan Fungsi Hati",
+    "Keywords_Synonyms": [
+      "Koneng Gede",
+      "Curcuma",
+      "Pencahar",
+      "Hepatoprotektor",
+      "Sirosis",
+      "Amarum"
+    ],
+    "Ringkasan_Snippet": "Rimpang yang dikenal sebagai tonikum hati (hepatoprotektor) dan efektif untuk meningkatkan nafsu makan. Memiliki sifat anti-inflamasi dan antioksidan.",
+    "Detail_Penggunaan": "Untuk memperbaiki fungsi hati (liver) atau sirosis: Rimpang dicuci, dipotong, lalu direbus. Diminum secara teratur. Bagus juga untuk mengatasi nyeri sendi dan menghambat penggumpalan darah.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan, namun konsumsi sesuai dosis yang dianjurkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 2,
+    "Nama_Lokal": "Temu Hitam",
+    "Nama_Ilmiah_Latin": "Curcuma aeruginosa Roxb.",
+    "Kategori_Famili": "Zingiberaceae (Rimpang)",
+    "Bagian_Digunakan": "Rimpang",
+    "Khasiat_Utama": "Peluruh Dahak, Obat Cacing, Penambah Nafsu Makan",
+    "Keywords_Synonyms": [
+      "Temu Ireng",
+      "Temu Erang",
+      "Obat Batuk",
+      "Anti Cacing",
+      "Sesak Napas"
+    ],
+    "Ringkasan_Snippet": "Rimpang berwarna kehitaman yang digunakan secara tradisional sebagai obat cacing (antihelmintik), peluruh dahak, dan mengobati sesak napas. Rasanya pahit.",
+    "Detail_Penggunaan": "Untuk obat cacing: Rimpang segar dicuci, dipotong tipis-tipis, direbus. Saring, dan diminum. Untuk sesak napas: Rebus 25g rimpang segar dengan 2 gelas air sampai mendidih selama 20 menit, diminum pagi dan sore.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 3,
+    "Nama_Lokal": "Kunyit",
+    "Nama_Ilmiah_Latin": "Curcuma longa Linn.",
+    "Kategori_Famili": "Zingiberaceae (Rimpang)",
+    "Bagian_Digunakan": "Rimpang",
+    "Khasiat_Utama": "Anti-inflamasi, Obat Gatal, Obat Luka, Antiseptik",
+    "Keywords_Synonyms": [
+      "Kunir",
+      "Koneng",
+      "Kurkumin",
+      "Pewarna Alami",
+      "Diare",
+      "Perut Kembung"
+    ],
+    "Ringkasan_Snippet": "Rimpang yang kaya kurkumin, sangat efektif sebagai anti-inflamasi, antioksidan, dan antiseptik. Umum digunakan untuk mengobati penyakit kulit dan gangguan pencernaan ringan.",
+    "Detail_Penggunaan": "Untuk Diare: 10-20g rimpang dihaluskan, ditambah air matang sedikit, disaring. Diminum 2-3 kali sehari. Untuk obat luar (Luka/Gatal): Rimpang diparut dan ditempelkan pada luka.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 4,
+    "Nama_Lokal": "Kencur",
+    "Nama_Ilmiah_Latin": "Kaempferia galanga Linn.",
+    "Kategori_Famili": "Zingiberaceae (Rimpang)",
+    "Bagian_Digunakan": "Rimpang",
+    "Khasiat_Utama": "Obat Batuk, Ekspektoran (Peluruh Dahak), Karminatif (Perut Kembung)",
+    "Keywords_Synonyms": [
+      "Cikur",
+      "Kencur",
+      "Jamu Beras Kencur",
+      "Anti-bakteri",
+      "Diuretik"
+    ],
+    "Ringkasan_Snippet": "Rimpang dengan aroma khas yang digunakan untuk mengatasi batuk, sakit tenggorokan, dan perut kembung. Memiliki sifat anti-bakteri, anti-inflamasi, dan ekspektoran.",
+    "Detail_Penggunaan": "Untuk obat batuk dan masuk angin: Rimpang dikunyah mentah atau diolah bersama beras menjadi jamu (Beras Kencur). Rebusan rimpang juga dapat diminum.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 5,
+    "Nama_Lokal": "Lempuyang Wangi",
+    "Nama_Ilmiah_Latin": "Zingiber aromaticum Val.",
+    "Kategori_Famili": "Zingiberaceae (Rimpang)",
+    "Bagian_Digunakan": "Rimpang",
+    "Khasiat_Utama": "Peluruh Angin, Menghangatkan, Obat Cacing, Penambah Nafsu Makan",
+    "Keywords_Synonyms": [
+      "Lempuyang Emprit",
+      "Pulasari",
+      "Masuk Angin",
+      "Nyeri Sendi"
+    ],
+    "Ringkasan_Snippet": "Rimpang yang memiliki khasiat karminatif, membantu mengeluarkan angin dari tubuh. Digunakan untuk mengatasi perut kembung, nyeri sendi, dan sebagai obat cacing.",
+    "Detail_Penggunaan": "Untuk obat cacing: Rimpang segar dicuci, diparut, ditambah air dan sedikit gula. Peras dan minum. Lakukan 2-3 kali sehari.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 6,
+    "Nama_Lokal": "Jahe",
+    "Nama_Ilmiah_Latin": "Zingiber officinale Roscoe",
+    "Kategori_Famili": "Zingiberaceae (Rimpang)",
+    "Bagian_Digunakan": "Rimpang",
+    "Khasiat_Utama": "Karminatif, Stimulansia, Anti-mual, Menghangatkan",
+    "Keywords_Synonyms": [
+      "Ginger",
+      "Jahe Gajah",
+      "Jahe Emprit",
+      "Masuk Angin",
+      "Vertigo",
+      "Wedang Jahe"
+    ],
+    "Ringkasan_Snippet": "Rimpang yang populer sebagai bumbu dan obat. Berkhasiat menghangatkan, meredakan mual/muntah (antiemetik), perut kembung (karminatif), dan nyeri sendi.",
+    "Detail_Penggunaan": "Untuk menghangatkan dan mengatasi mual: Rimpang digeprek atau diiris, lalu diseduh dengan air panas. Dapat ditambahkan gula atau madu. Untuk nyeri, dapat dibuat kompres hangat dari parutan jahe.",
+    "Peringatan_Efek_Samping": "Konsumsi berlebihan dapat menyebabkan iritasi lambung ringan pada beberapa individu.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 7,
+    "Nama_Lokal": "Bawang Putih",
+    "Nama_Ilmiah_Latin": "Allium sativum L.",
+    "Kategori_Famili": "Liliaceae (Umbi)",
+    "Bagian_Digunakan": "Umbi",
+    "Khasiat_Utama": "Anti-hipertensi, Anti-koagulan, Anti-kolesterol",
+    "Keywords_Synonyms": [
+      "Garlic",
+      "Bumbu Dapur",
+      "Darah Tinggi",
+      "Tekanan Darah",
+      "Anti-bakteri",
+      "Allicin"
+    ],
+    "Ringkasan_Snippet": "Umbi yang kaya Allicin. Sangat berkhasiat untuk menurunkan tekanan darah tinggi (anti-hipertensi), mengurangi kadar kolesterol, dan memiliki efek anti-bakteri yang kuat.",
+    "Detail_Penggunaan": "Untuk menurunkan tekanan darah: Konsumsi 1-2 siung mentah per hari. Bisa juga diiris tipis lalu dicampur madu atau diolah dalam makanan.",
+    "Peringatan_Efek_Samping": "Bau badan/mulut yang kuat. Konsumsi terlalu banyak dapat menyebabkan gangguan pencernaan ringan. Hati-hati bagi yang sedang mengonsumsi obat pengencer darah.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 8,
+    "Nama_Lokal": "Pala",
+    "Nama_Ilmiah_Latin": "Myristica fragrans Houtt.",
+    "Kategori_Famili": "Myristicaceae (Biji)",
+    "Bagian_Digunakan": "Biji dan Selubung Biji (Fuli)",
+    "Khasiat_Utama": "Karminatif, Stimulansia, Obat Tidur (Sedatif)",
+    "Keywords_Synonyms": [
+      "Nutmeg",
+      "Obat Insomnia",
+      "Anti-mual",
+      "Peluruh Haid"
+    ],
+    "Ringkasan_Snippet": "Biji rempah yang terkenal dapat memberikan efek sedatif ringan (membantu tidur) dan digunakan untuk mengatasi mual, muntah, serta perut kembung.",
+    "Detail_Penggunaan": "Untuk mengatasi insomnia: Biji dihaluskan dan diseduh seperti teh, atau dapat digunakan sebagai bumbu yang memberikan efek menenangkan.",
+    "Peringatan_Efek_Samping": "Konsumsi dalam dosis sangat tinggi dapat bersifat toksik (beracun) dan menyebabkan halusinasi. Gunakan dalam jumlah wajar.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 9,
+    "Nama_Lokal": "Cengkeh",
+    "Nama_Ilmiah_Latin": "Syzygium aromaticum (L.) Merr. & Perry",
+    "Kategori_Famili": "Myrtaceae (Bunga)",
+    "Bagian_Digunakan": "Kuncup Bunga Kering (Cengkeh)",
+    "Khasiat_Utama": "Obat Sakit Gigi, Karminatif, Stimulansia",
+    "Keywords_Synonyms": [
+      "Clove",
+      "Minyak Atsiri",
+      "Eugenol",
+      "Penghilang Bau Mulut",
+      "Anti-bakteri"
+    ],
+    "Ringkasan_Snippet": "Kuncup bunga yang mengandung minyak atsiri (Eugenol) tinggi. Sangat efektif sebagai obat sakit gigi (anestesi lokal) dan anti-bakteri. Digunakan juga untuk menghangatkan.",
+    "Detail_Penggunaan": "Untuk sakit gigi: Minyak cengkeh dioleskan pada gigi yang sakit, atau kuncup bunga dikunyah sebentar lalu ditempelkan. Dapat juga direbus dan diminum airnya.",
+    "Peringatan_Efek_Samping": "Minyak cengkeh murni dapat menyebabkan iritasi jika digunakan berlebihan pada kulit atau mukosa sensitif.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 10,
+    "Nama_Lokal": "Adas",
+    "Nama_Ilmiah_Latin": "Foeniculum vulgare Mill.",
+    "Kategori_Famili": "Apiaceae (Buah)",
+    "Bagian_Digunakan": "Buah",
+    "Khasiat_Utama": "Karminatif, Peluruh Kentut, Obat Batuk",
+    "Keywords_Synonyms": [
+      "Fennel",
+      "Anise",
+      "Minyak Adas",
+      "Perut Kembung",
+      "Pencernaan"
+    ],
+    "Ringkasan_Snippet": "Buah yang dikenal sebagai karminatif kuat. Efektif untuk mengatasi perut kembung, nyeri perut, dan sebagai campuran obat batuk tradisional.",
+    "Detail_Penggunaan": "Buah adas kering ditumbuk kasar lalu direbus atau diseduh. Diminum airnya. Minyak adas juga bisa digunakan sebagai olesan untuk perut kembung.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 11,
+    "Nama_Lokal": "Pulosari",
+    "Nama_Ilmiah_Latin": "Alyxia stellata Roem. & Schult.",
+    "Kategori_Famili": "Apocynaceae (Kulit Batang)",
+    "Bagian_Digunakan": "Kulit Batang",
+    "Khasiat_Utama": "Karminatif, Obat Batuk, Demam",
+    "Keywords_Synonyms": [
+      "Pulosari",
+      "Kembung",
+      "Pencernaan",
+      "Obat Tradisional"
+    ],
+    "Ringkasan_Snippet": "Kulit batang yang berkhasiat sebagai karminatif dan sering digunakan sebagai campuran jamu untuk mengatasi perut kembung, sakit perut, dan demam.",
+    "Detail_Penggunaan": "Kulit batang direbus bersama bahan lain, kemudian diminum airnya. Dapat digunakan untuk mengobati demam pada anak dan diare.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 12,
+    "Nama_Lokal": "Daun Jambu Biji",
+    "Nama_Ilmiah_Latin": "Psidium guajava L.",
+    "Kategori_Famili": "Myrtaceae (Daun)",
+    "Bagian_Digunakan": "Daun",
+    "Khasiat_Utama": "Anti-diare, Astringen, Pereda Sakit Perut",
+    "Keywords_Synonyms": [
+      "Jambu Klutuk",
+      "Obat Mencret",
+      "Anti-bakteri",
+      "Quercetin"
+    ],
+    "Ringkasan_Snippet": "Daun yang sangat efektif sebagai anti-diare dan astringen. Secara tradisional digunakan untuk menghentikan mencret (diare) dan meredakan sakit perut.",
+    "Detail_Penggunaan": "10 lembar daun muda direbus dengan 1 gelas air sampai mendidih. Minum air rebusan. Atau, kunyah 2 lembar daun muda yang sudah dicuci bersih.",
+    "Peringatan_Efek_Samping": "Dapat menyebabkan konstipasi jika dikonsumsi berlebihan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 13,
+    "Nama_Lokal": "Seledri",
+    "Nama_Ilmiah_Latin": "Apium graveolens L.",
+    "Kategori_Famili": "Apiaceae (Daun dan Akar)",
+    "Bagian_Digunakan": "Daun dan Akar",
+    "Khasiat_Utama": "Anti-hipertensi, Diuretik, Peluruh Asam Urat",
+    "Keywords_Synonyms": [
+      "Apium",
+      "Daun Sop",
+      "Tekanan Darah Tinggi",
+      "Rematik"
+    ],
+    "Ringkasan_Snippet": "Sayuran yang sering digunakan sebagai bumbu, namun memiliki khasiat obat sebagai anti-hipertensi dan diuretik (peluruh kencing). Efektif membantu menurunkan tekanan darah.",
+    "Detail_Penggunaan": "Akar dan daun dicuci, lalu direbus. Minum air rebusannya 2 kali sehari. Atau, daun segar dibuat jus dan diminum.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 14,
+    "Nama_Lokal": "Daun Sirih",
+    "Nama_Ilmiah_Latin": "Piper betle L.",
+    "Kategori_Famili": "Piperaceae (Daun)",
+    "Bagian_Digunakan": "Daun",
+    "Khasiat_Utama": "Antiseptik, Obat Mimisan, Penghilang Bau Badan/Mulut",
+    "Keywords_Synonyms": [
+      "Suruh",
+      "Betel Leaf",
+      "Obat Luka",
+      "Sariawan",
+      "Keputihan"
+    ],
+    "Ringkasan_Snippet": "Daun dengan kandungan minyak atsiri (Chavicol) yang tinggi, berfungsi sebagai antiseptik, anti-jamur, dan digunakan untuk mengatasi mimisan, keputihan, dan bau badan.",
+    "Detail_Penggunaan": "Untuk Mimisan: Gulung satu lembar daun sirih, masukkan ke lubang hidung. Untuk Antiseptik/Keputihan: Rebus beberapa lembar daun lalu gunakan airnya untuk mencuci atau berkumur.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 15,
+    "Nama_Lokal": "Beluntas",
+    "Nama_Ilmiah_Latin": "Pluchea indica",
+    "Kategori_Famili": "Asteraceae (Daun)",
+    "Bagian_Digunakan": "Daun",
+    "Khasiat_Utama": "Menghilangkan Bau Badan/Mulut, Obat Kencing Manis (Diabetes)",
+    "Keywords_Synonyms": [
+      "Lalapan",
+      "Daun Beluntas",
+      "Antioksidan",
+      "Anti-bakteri",
+      "Menyegarkan"
+    ],
+    "Ringkasan_Snippet": "Daun yang berkhasiat sebagai deodoran alami untuk mengatasi bau badan dan bau mulut. Juga memiliki sifat antioksidan dan digunakan sebagai obat diabetes.",
+    "Detail_Penggunaan": "Untuk menghilangkan bau badan: Daun segar dimakan sebagai lalapan saat makan. Untuk Kencing Manis: Rebus 25g daun segar dengan 2 gelas air sampai mendidih, saring, dan minum 2 kali sehari.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 16,
+    "Nama_Lokal": "Pule Pandak",
+    "Nama_Ilmiah_Latin": "Rauvolfia serpentina (L.) Benth.",
+    "Kategori_Famili": "Apocynaceae (Akar)",
+    "Bagian_Digunakan": "Akar",
+    "Khasiat_Utama": "Anti-hipertensi, Hipotensif, Obat Penenang",
+    "Keywords_Synonyms": [
+      "Tapak Liman",
+      "Serpentina",
+      "Obat Darah Tinggi",
+      "Hipotensif",
+      "Sedatif"
+    ],
+    "Ringkasan_Snippet": "Akar tanaman yang terkenal mengandung alkaloid Reserpin. Sangat efektif untuk menurunkan tekanan darah tinggi (anti-hipertensi) dan memiliki efek penenang (sedatif) pada sistem saraf.",
+    "Detail_Penggunaan": "Akar kering atau serbuk akar direbus, airnya diminum sesuai dosis. Karena khasiatnya kuat, penggunaannya harus hati-hati dan dalam pengawasan.",
+    "Peringatan_Efek_Samping": "Penggunaan dosis tinggi dan jangka panjang dapat menimbulkan efek samping karena kandungan alkaloidnya yang kuat. Konsultasi dokter diperlukan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 17,
+    "Nama_Lokal": "Mengkudu",
+    "Nama_Ilmiah_Latin": "Morinda citrifolia L.",
+    "Kategori_Famili": "Rubiaceae (Buah)",
+    "Bagian_Digunakan": "Buah, Daun, Akar",
+    "Khasiat_Utama": "Anti-hipertensi, Diabetes, Anti-kanker, Analgesik",
+    "Keywords_Synonyms": [
+      "Noni",
+      "Pace",
+      "Keumeudee",
+      "Tekanan Darah",
+      "Anti-nyeri",
+      "Antioksidan"
+    ],
+    "Ringkasan_Snippet": "Buah yang dikenal memiliki banyak khasiat, terutama untuk menurunkan tekanan darah dan gula darah. Memiliki sifat analgesik (penghilang rasa sakit) dan antioksidan.",
+    "Detail_Penggunaan": "Buah mentah dibuat jus atau ekstrak. Daun dapat direbus. Untuk hipertensi dan diabetes, buah yang matang diolah menjadi jus/rebusan dan diminum rutin.",
+    "Peringatan_Efek_Samping": "Rasanya sangat kuat. Beberapa orang mungkin mengalami gangguan pencernaan ringan saat awal konsumsi.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 18,
+    "Nama_Lokal": "Daun Dewa",
+    "Nama_Ilmiah_Latin": "Gynura procumbens (Lour.) Merr.",
+    "Kategori_Famili": "Asteraceae (Daun)",
+    "Bagian_Digunakan": "Daun",
+    "Khasiat_Utama": "Anti-koagulan, Anti-tumor, Anti-hipertensi",
+    "Keywords_Synonyms": [
+      "Sembung",
+      "Sambung Nyawa",
+      "Darah Beku",
+      "Anti-kanker",
+      "Anti-radang"
+    ],
+    "Ringkasan_Snippet": "Daun yang berkhasiat untuk mengatasi pembekuan darah (anti-koagulan), tumor/kanker, dan menurunkan tekanan darah. Dapat menghentikan pendarahan dan meredakan radang.",
+    "Detail_Penggunaan": "Daun segar dimakan mentah sebagai lalapan atau direbus. Untuk luka luar, daun ditumbuk dan ditempelkan pada luka untuk menghentikan pendarahan.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 19,
+    "Nama_Lokal": "Dlingo",
+    "Nama_Ilmiah_Latin": "Acorus calamus L.",
+    "Kategori_Famili": "Acoraceae (Rimpang)",
+    "Bagian_Digunakan": "Rimpang",
+    "Khasiat_Utama": "Karminatif, Sedatif (Obat Penenang), Anti-inflamasi",
+    "Keywords_Synonyms": [
+      "Jaringau",
+      "Rimpang Wangi",
+      "Obat Tidur",
+      "Perut Kembung",
+      "Obat Demam"
+    ],
+    "Ringkasan_Snippet": "Rimpang dengan aroma kuat yang digunakan sebagai penenang ringan, obat perut kembung (karminatif), dan sebagai obat demam pada anak-anak.",
+    "Detail_Penggunaan": "Rimpang direbus atau dihaluskan. Untuk obat luar (demam): Rimpang dicampur minyak kelapa, lalu dioleskan di tubuh. Untuk obat dalam (kembung): Diminum air rebusannya.",
+    "Peringatan_Efek_Samping": "Penggunaan berlebihan dapat menimbulkan efek samping karena kandungan Beta-Asarone pada beberapa varietas.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 20,
+    "Nama_Lokal": "Waru Landak",
+    "Nama_Ilmiah_Latin": "Hibiscus mutabilis L.",
+    "Kategori_Famili": "Malvaceae (Bunga)",
+    "Bagian_Digunakan": "Bunga",
+    "Khasiat_Utama": "Ekspektoran (Peluruh Dahak), Anti-inflamasi, Obat Batuk",
+    "Keywords_Synonyms": [
+      "Bunga Waru",
+      "Kembang Sepatu",
+      "Anti-radang Tenggorokan"
+    ],
+    "Ringkasan_Snippet": "Bunga yang digunakan untuk mengobati batuk dan sakit tenggorokan karena sifatnya yang ekspektoran (meluruhkan dahak) dan anti-inflamasi. Berkhasiat untuk radang paru-paru.",
+    "Detail_Penggunaan": "Bunga kering atau segar direbus, air rebusan diminum saat hangat. Dapat dicampur madu untuk meredakan radang tenggorokan.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 21,
+    "Nama_Lokal": "Jombang",
+    "Nama_Ilmiah_Latin": "Taraxacum officinale L.",
+    "Kategori_Famili": "Asteraceae (Seluruh Tanaman)",
+    "Bagian_Digunakan": "Seluruh Tanaman (Herba)",
+    "Khasiat_Utama": "Diuretik, Laksatif (Pencahar), Perbaikan Fungsi Hati",
+    "Keywords_Synonyms": [
+      "Dandelion",
+      "Dandelion Indonesia",
+      "Peluruh Kencing",
+      "Anti-kanker",
+      "Sirosis"
+    ],
+    "Ringkasan_Snippet": "Tanaman yang dikenal sebagai diuretik kuat dan laksatif ringan. Digunakan untuk melancarkan kencing, mengatasi gangguan hati, dan memiliki potensi anti-kanker.",
+    "Detail_Penggunaan": "Seluruh tanaman dicuci, direbus, dan diminum airnya. Untuk gangguan hati, konsumsi rutin rebusan jombang dapat membantu detoksifikasi.",
+    "Peringatan_Efek_Samping": "Tidak disarankan untuk penderita sumbatan saluran empedu.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 22,
+    "Nama_Lokal": "Pegagan",
+    "Nama_Ilmiah_Latin": "Centella asiatica (L.) Urb.",
+    "Kategori_Famili": "Apiaceae (Herba)",
+    "Bagian_Digunakan": "Seluruh Tanaman (Herba)",
+    "Khasiat_Utama": "Mempercepat Penyembuhan Luka, Nootropik (Kecerdasan), Anti-mikroba",
+    "Keywords_Synonyms": [
+      "Antanan",
+      "Gotu Kola",
+      "Kecerdasan",
+      "Penyembuhan Jaringan",
+      "Amandel"
+    ],
+    "Ringkasan_Snippet": "Herbal yang terkenal untuk meningkatkan fungsi kognitif (daya ingat) dan mempercepat penyembuhan luka pada kulit. Sering digunakan sebagai lalapan atau diekstrak.",
+    "Detail_Penggunaan": "Daun segar dimakan sebagai lalapan atau dibuat jus. Untuk luka: Daun ditumbuk, diperas, airnya diminum, ampasnya ditempelkan di luka.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 23,
+    "Nama_Lokal": "Jarak Pagar",
+    "Nama_Ilmiah_Latin": "Jatropha curcas L.",
+    "Kategori_Famili": "Euphorbiaceae (Daun dan Minyak)",
+    "Bagian_Digunakan": "Daun, Minyak Biji",
+    "Khasiat_Utama": "Laksatif Kuat, Obat Luka, Anti-inflamasi",
+    "Keywords_Synonyms": [
+      "Jarak Kosta",
+      "Minyak Jarak",
+      "Pencahar Kuat",
+      "Sembelit"
+    ],
+    "Ringkasan_Snippet": "Minyak biji jarak dikenal sebagai laksatif (pencahar) yang sangat kuat. Daunnya digunakan secara eksternal untuk radang dan luka.",
+    "Detail_Penggunaan": "Minyak jarak digunakan untuk mengatasi sembelit. Daun dipanaskan (dilayukan) lalu ditempelkan pada luka atau radang untuk meredakan nyeri dan bengkak.",
+    "Peringatan_Efek_Samping": "Biji dan minyak jarak bersifat toksik jika dikonsumsi dalam dosis berlebihan, dan dapat menyebabkan muntah atau diare parah. HANYA gunakan minyak jarak komersial yang diproses dengan benar.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 24,
+    "Nama_Lokal": "Tempuyung",
+    "Nama_Ilmiah_Latin": "Sonchus arvensis L.",
+    "Kategori_Famili": "Asteraceae (Daun)",
+    "Bagian_Digunakan": "Daun",
+    "Khasiat_Utama": "Diuretik, Peluruh Batu Ginjal",
+    "Keywords_Synonyms": [
+      "Niawali",
+      "Daun Tempuyung",
+      "Batu Ginjal",
+      "Asam Urat",
+      "Anti-hipertensi"
+    ],
+    "Ringkasan_Snippet": "Daun yang sangat efektif sebagai diuretik dan dikenal untuk membantu melarutkan dan mengeluarkan batu ginjal dan batu empedu.",
+    "Detail_Penggunaan": "Daun segar atau kering direbus. Minum air rebusannya secara rutin. Dianjurkan untuk berkonsultasi jika digunakan sebagai peluruh batu ginjal.",
+    "Peringatan_Efek_Samping": "Dapat menyebabkan dehidrasi jika asupan air kurang, karena bersifat diuretik.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 25,
+    "Nama_Lokal": "Daun Kumis Kucing",
+    "Nama_Ilmiah_Latin": "Orthosiphon aristatus (Blume) Miq.",
+    "Kategori_Famili": "Lamiaceae (Daun)",
+    "Bagian_Digunakan": "Daun",
+    "Khasiat_Utama": "Diuretik, Peluruh Batu Ginjal, Anti-hipertensi",
+    "Keywords_Synonyms": [
+      "Kumis Kucing",
+      "Ginjal",
+      "Diabetes",
+      "Asam Urat",
+      "Orthosiphon"
+    ],
+    "Ringkasan_Snippet": "Salah satu herbal terpopuler untuk kesehatan ginjal dan saluran kemih. Efektif sebagai diuretik kuat dan membantu melarutkan kristal pembentuk batu ginjal.",
+    "Detail_Penggunaan": "Daun kering atau segar direbus hingga mendidih. Minum air rebusannya 2-3 kali sehari.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 26,
+    "Nama_Lokal": "Sembung",
+    "Nama_Ilmiah_Latin": "Blumea balsamifera (L.) DC.",
+    "Kategori_Famili": "Asteraceae (Daun)",
+    "Bagian_Digunakan": "Daun",
+    "Khasiat_Utama": "Karminatif, Sudorifik (Peluruh Keringat), Obat Batuk",
+    "Keywords_Synonyms": [
+      "Sembung Gajah",
+      "Minyak Sembung",
+      "Masuk Angin",
+      "Perut Kembung",
+      "Diare"
+    ],
+    "Ringkasan_Snippet": "Daun dengan aroma kuat yang digunakan sebagai obat karminatif (mengatasi kembung) dan sudorifik (melancarkan keringat), sangat baik untuk mengobati masuk angin dan diare.",
+    "Detail_Penggunaan": "Daun segar direbus, diminum airnya. Dapat juga digunakan untuk mandi (rendaman) saat demam dan masuk angin.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 27,
+    "Nama_Lokal": "Dadap Ayam",
+    "Nama_Ilmiah_Latin": "Erythrina variegata L.",
+    "Kategori_Famili": "Fabaceae (Daun)",
+    "Bagian_Digunakan": "Daun",
+    "Khasiat_Utama": "Galaktagoga (Peluruh ASI), Sedatif, Ekspektoran",
+    "Keywords_Synonyms": [
+      "Dadab",
+      "Dadap Serep",
+      "Pelancar ASI",
+      "Obat Batuk",
+      "Anti-panas"
+    ],
+    "Ringkasan_Snippet": "Daun yang digunakan untuk melancarkan ASI (galaktagoga). Memiliki sifat sedatif dan ekspektoran yang membantu meredakan batuk dan panas dalam.",
+    "Detail_Penggunaan": "Daun muda direbus atau dikukus, lalu dikonsumsi sebagai lalapan atau diminum air rebusannya.",
+    "Peringatan_Efek_Samping": "Tidak ada peringatan khusus yang disebutkan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 28,
+    "Nama_Lokal": "Kayu Putih",
+    "Nama_Ilmiah_Latin": "Melaleuca leucadendra L.",
+    "Kategori_Famili": "Myrtaceae (Daun, Minyak)",
+    "Bagian_Digunakan": "Minyak Daun",
+    "Khasiat_Utama": "Karminatif, Rubefacient, Antiseptik",
+    "Keywords_Synonyms": [
+      "Cajuput",
+      "Minyak Kayu Putih",
+      "Minyak Telon",
+      "Nyeri Otot",
+      "Masuk Angin"
+    ],
+    "Ringkasan_Snippet": "Daun yang menghasilkan minyak atsiri (Eucalyptol) yang sangat populer. Digunakan sebagai karminatif (menghangatkan dan mengatasi kembung) dan pereda nyeri otot (rubefacient).",
+    "Detail_Penggunaan": "Minyak dioleskan pada kulit atau dihirup untuk meredakan masuk angin, sakit kepala, atau nyeri otot. TIDAK untuk dikonsumsi secara oral.",
+    "Peringatan_Efek_Samping": "Hanya untuk penggunaan luar. Hindari kontak langsung dengan mata dan kulit sensitif. Toksik jika tertelan dalam jumlah besar.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 29,
+    "Nama_Lokal": "Mimba",
+    "Nama_Ilmiah_Latin": "Azadirachta indica A. Juss.",
+    "Kategori_Famili": "Meliaceae (Daun)",
+    "Bagian_Digunakan": "Daun, Kulit Batang",
+    "Khasiat_Utama": "Anti-bakteri, Anti-diabetes, Anti-inflamasi",
+    "Keywords_Synonyms": [
+      "Neem",
+      "Daun Pahit",
+      "Sambiloto India",
+      "Anti-malaria",
+      "Dermatitis"
+    ],
+    "Ringkasan_Snippet": "Tanaman dengan rasa sangat pahit yang digunakan sebagai anti-bakteri, anti-inflamasi, dan efektif untuk mengobati penyakit kulit dan menurunkan gula darah. Populer di India.",
+    "Detail_Penggunaan": "Daun direbus dan airnya diminum untuk obat dalam (diabetes, demam). Daun ditumbuk dan dioleskan untuk penyakit kulit.",
+    "Peringatan_Efek_Samping": "Rasa sangat pahit. Konsumsi jangka panjang dan dosis tinggi harus dengan pengawasan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 30,
+    "Nama_Lokal": "Pohon Pepaya",
+    "Nama_Ilmiah_Latin": "Carica papaya L.",
+    "Kategori_Famili": "Caricaceae (Buah, Daun, Akar)",
+    "Bagian_Digunakan": "Daun, Buah, Akar",
+    "Khasiat_Utama": "Anti-dengue (Daun), Melancarkan Pencernaan (Buah), Anti-Cacing",
+    "Keywords_Synonyms": [
+      "Papaya",
+      "Getah Pepaya",
+      "Cacingan",
+      "Dengue",
+      "Trombosit"
+    ],
+    "Ringkasan_Snippet": "Tanaman multifungsi. Daunnya terkenal membantu meningkatkan trombosit pada kasus demam berdarah. Buah matang kaya serat dan melancarkan pencernaan.",
+    "Detail_Penggunaan": "Untuk Demam Berdarah: Daun pepaya dijus mentah dan diminum airnya. Untuk pencernaan: Buah matang dimakan langsung. Getah buah muda untuk obat cacing.",
+    "Peringatan_Efek_Samping": "Getah pepaya dapat menyebabkan iritasi pada kulit sensitif.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 31,
+    "Nama_Lokal": "Lidah Buaya",
+    "Nama_Ilmiah_Latin": "Aloe vera (L.) Burm.f.",
+    "Kategori_Famili": "Asphodelaceae (Gel Daun)",
+    "Bagian_Digunakan": "Gel Daun",
+    "Khasiat_Utama": "Obat Luka Bakar, Anti-inflamasi Kulit, Laksatif",
+    "Keywords_Synonyms": [
+      "Aloe",
+      "Perawatan Kulit",
+      "Luka Bakar",
+      "Pelembab",
+      "Pencahar"
+    ],
+    "Ringkasan_Snippet": "Gel dari daunnya sangat populer untuk pengobatan luka bakar ringan, iritasi kulit, dan melembapkan. Cairan di bawah kulitnya bersifat laksatif ringan.",
+    "Detail_Penggunaan": "Gel dioleskan langsung pada kulit yang luka bakar atau iritasi. Dapat juga dikonsumsi (jika diolah dengan benar) untuk melancarkan pencernaan.",
+    "Peringatan_Efek_Samping": "Hati-hati terhadap getah kuning (aloin) yang dapat menyebabkan diare jika dikonsumsi berlebihan.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 32,
+    "Nama_Lokal": "Brotowali",
+    "Nama_Ilmiah_Latin": "Tinospora crispa (L.) Hook. f. & Thomson",
+    "Kategori_Famili": "Menispermaceae (Batang)",
+    "Bagian_Digunakan": "Batang",
+    "Khasiat_Utama": "Anti-diabetes, Anti-demam, Amarum (Pahit)",
+    "Keywords_Synonyms": [
+      "Brotowali Pahit",
+      "Obat Gula Darah",
+      "Demam",
+      "Kudis",
+      "Hepatoprotektor"
+    ],
+    "Ringkasan_Snippet": "Batang dengan rasa sangat pahit. Efektif untuk menurunkan kadar gula darah (anti-diabetes) dan mengatasi demam. Digunakan juga untuk obat luar (kudis, luka).",
+    "Detail_Penggunaan": "Batang direbus dan diminum airnya. Untuk kudis, batang ditumbuk lalu dioleskan di kulit.",
+    "Peringatan_Efek_Samping": "Rasa sangat pahit, dapat menyebabkan mual jika tidak terbiasa.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 33,
+    "Nama_Lokal": "Gandarusa",
+    "Nama_Ilmiah_Latin": "Justicia gendarussa Burm. f.",
+    "Kategori_Famili": "Acanthaceae (Daun)",
+    "Bagian_Digunakan": "Daun",
+    "Khasiat_Utama": "Analgesik (Pereda Nyeri), Anti-inflamasi, Diuretik",
+    "Keywords_Synonyms": [
+      "Daun Besi",
+      "Rematik",
+      "Pereda Sakit",
+      "Nyeri Sendi",
+      "Anti-radang"
+    ],
+    "Ringkasan_Snippet": "Daun yang secara tradisional digunakan sebagai pereda nyeri dan anti-inflamasi, terutama untuk nyeri sendi, rematik, dan tulang terkilir. Berkhasiat diuretik.",
+    "Detail_Penggunaan": "Daun segar direbus lalu diminum airnya. Untuk nyeri luar, daun ditumbuk, dicampur air panas, lalu dioleskan sebagai kompres.",
+    "Peringatan_Efek_Samping": "Sedang diteliti potensinya sebagai kontrasepsi pria; harus hati-hati pada wanita hamil.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 34,
+    "Nama_Lokal": "Sambang Darah",
+    "Nama_Ilmiah_Latin": "Excoecaria cochinchinensis Lour.",
+    "Kategori_Famili": "Euphorbiaceae (Daun)",
+    "Bagian_Digunakan": "Daun",
+    "Khasiat_Utama": "Hemostatik (Penghenti Pendarahan), Laksatif, Diuretik",
+    "Keywords_Synonyms": [
+      "Ki Urat",
+      "Pendarahan",
+      "Mencret",
+      "Pelancar Kencing"
+    ],
+    "Ringkasan_Snippet": "Daun berwarna hijau dan merah ini dikenal sebagai hemostatik, membantu menghentikan pendarahan. Juga digunakan sebagai laksatif dan diuretik.",
+    "Detail_Penggunaan": "Daun direbus dan diminum airnya untuk mengobati pendarahan dalam. Untuk obat luar, daun ditumbuk dan ditempelkan pada luka.",
+    "Peringatan_Efek_Samping": "Getah tanaman dapat mengiritasi kulit dan mata. Berhati-hatilah saat memetik/mengolah.",
+    "Status_Publikasi": true
+  },
+  {
+    "ID": 35,
+    "Nama_Lokal": "Mahkota Dewa",
+    "Nama_Ilmiah_Latin": "Phaleria macrocarpa (Scheff.) Boerl.",
+    "Kategori_Famili": "Thymelaeaceae (Buah)",
+    "Bagian_Digunakan": "Buah, Daun",
+    "Khasiat_Utama": "Anti-kanker, Anti-hipertensi, Anti-diabetes, Anti-inflamasi",
+    "Keywords_Synonyms": [
+      "Simalakama",
+      "Obat Tumor",
+      "Gula Darah",
+      "Kanker"
+    ],
+    "Ringkasan_Snippet": "Buah yang sangat populer karena khasiatnya sebagai anti-kanker/tumor, anti-diabetes, dan penurun tekanan darah. Memiliki sifat antioksidan yang tinggi.",
+    "Detail_Penggunaan": "Buah (setelah dibuang bijinya karena bijinya beracun) diiris tipis lalu dikeringkan, kemudian direbus. Diminum air rebusannya secara teratur.",
+    "Peringatan_Efek_Samping": "Seluruh bagian tanaman bersifat toksik (beracun), terutama bijinya. Pengolahan HARUS dilakukan dengan benar dan hati-hati. Konsumsi bijinya harus dihindari.",
+    "Status_Publikasi": true
+  }
+]
