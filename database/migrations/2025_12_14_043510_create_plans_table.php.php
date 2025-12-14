@@ -11,7 +11,27 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('plans', function (Blueprint $table) {
+            $table->id();
+
+            // identitas tanaman
+            $table->string('name');
+            $table->string('latin_name');
+            $table->string('family');
+            $table->string('part_used');
+
+            // data visual & pencarian (frontend)
+            $table->string('description');
+            $table->string('keywords');
+            $table->string('image_path');
+
+            // data detail (untuk chatbot AI dan halaman detail)
+            $table->longText('benefits');
+            $table->longText('processing');
+            $table->text('side_effects');
+
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('plans');
     }
 };
