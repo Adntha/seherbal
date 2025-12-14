@@ -48,7 +48,7 @@ class PlantSeeder extends Seeder
                 'part_used' => $plantData['Bagian_Digunakan'],
                 'description' => $plantData['Ringkasan_Snippet'],
                 'keywords' => implode(', ', $plantData['Keywords_Synonyms']), // Array to string
-                'image_path' => strtolower(str_replace(' ', '_', $plantData['Nama_Lokal'])) . '.jpg', // Generate image filename
+                'image_path' => strtolower(str_replace(' ', '-', $plantData['Nama_Lokal'])) . '.jpg', // Generate image filename
                 'benefits' => $plantData['Khasiat_Utama'],
                 'processing' => $plantData['Detail_Penggunaan'],
                 'side_effects' => $plantData['Peringatan_Efek_Samping'],
