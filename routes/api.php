@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PlantController;
+use App\Http\Controllers\ChatbotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/plants', [PlantController::class, 'index']);
 Route::get('/plants/{id}', [PlantController::class, 'show']);
+
+// Chatbot Routes
+Route::post('/chatbot/message', [ChatbotController::class, 'sendMessage']);
+Route::get('/chatbot/suggestions', [ChatbotController::class, 'getSuggestions']);
