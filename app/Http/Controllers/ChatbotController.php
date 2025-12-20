@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\ChatbotService;
+use App\Models\ChatHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -40,6 +41,15 @@ class ChatbotController extends Controller
 
         // Send to chatbot service
         $result = $this->chatbotService->sendMessage($userMessage);
+
+        $aiReply = $result['reply'] ?? $result['message'] ?? null;
+
+        if($aiReply) {
+            ChatHistory::create([
+                'user_question' => $userMessage,
+                'ai_response' => $aiReply
+            ]);
+        }
 
         // Return response
         return response()->json($result);
