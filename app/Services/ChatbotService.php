@@ -112,7 +112,7 @@ class ChatbotService
                     'temperature' => 0.7,
                     'topK' => 40,
                     'topP' => 0.95,
-                    'maxOutputTokens' => 1024,
+                    'maxOutputTokens' => 8192,
                 ],
                 'safetySettings' => [
                     [
@@ -136,7 +136,7 @@ class ChatbotService
 
             // Send request to Gemini API
             $response = Http::withoutVerifying()
-                ->timeout(30)
+                ->timeout(90)
                 ->withHeaders([
                     'Content-Type' => 'application/json',
                 ])
