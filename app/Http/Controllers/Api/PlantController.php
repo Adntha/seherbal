@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Plant;
@@ -55,4 +58,124 @@ class PlantController extends Controller
             'data' => $plant
         ]);
     }
+
+    /**
+ * 1. CREATE (Tambah Tanaman Baru)
+ */
+public function store(Request $request)
+{
+    // A. Validasi
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|string',
+        'latin_name' => 'required|string',
+        // Gambar wajib ada saat create
+        'image' => 'required|image|mimes:jpeg,png,jpg|max:2048', 
+        'description' => 'required',
+        'benefits' => 'required',
+        'processing' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+    }
+
+    // B. Upload Gambar
+    $image = $request->file('image');
+    // Bikin nama file unik: jahe-merah-12345.jpg
+    $imageName = Str::slug($request->name) . '-' . time() . '.' . $image->getClientOriginalExtension();
+    // Simpan ke folder: storage/app/public/plants
+    $image->storeAs('public/plants', $imageName);
+
+    // C. Simpan ke Database
+    $plant = Plant::create([
+        'name' => $request->name,
+        'latin_name' => $request->latin_name,
+        'image_path' => $imageName, // Simpan nama filenya saja
+        'description' => $request->description,
+        'benefits' => $request->benefits,
+        'processing' => $request->processing,
+        'side_effects' => $request->side_effects ?? null,
+        'keywords' => $request->keywords ?? '',
+    ]);
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Tanaman berhasil ditambahkan',
+        'data' => $plant
+    ], 201);
+}
+
+/**
+ * 2. UPDATE (Edit Tanaman)
+ */
+public function update(Request $request, $id)
+{
+    $plant = Plant::find($id);
+    if (!$plant) return response()->json(['message' => 'Tanaman tidak ditemukan'], 404);
+
+    // Validasi (Gambar boleh kosong kalau tidak mau diganti)
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|string',
+        'image' => 'nullable|image|max:2048', // Nullable
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+    }
+
+    // Cek apakah user upload gambar baru?
+    if ($request->hasFile('image')) {
+        // 1. Hapus gambar lama biar server gak penuh
+        if ($plant->image_path) {
+            Storage::delete('public/plants/' . $plant->image_path);
+        }
+
+        // 2. Upload gambar baru
+        $image = $request->file('image');
+        $imageName = Str::slug($request->name) . '-' . time() . '.' . $image->getClientOriginalExtension();
+        $image->storeAs('public/plants', $imageName);
+        
+        // Update nama file di object plant
+        $plant->image_path = $imageName;
+    }
+
+    // Update data teks
+    $plant->update([
+        'name' => $request->name,
+        'latin_name' => $request->latin_name,
+        'description' => $request->description,
+        'benefits' => $request->benefits,
+        'processing' => $request->processing,
+        'side_effects' => $request->side_effects,
+        'image_path' => $plant->image_path, // Simpan perubahan image_path jika ada
+    ]);
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Data tanaman diperbarui',
+        'data' => $plant
+    ]);
+}
+
+/**
+ * 3. DELETE (Hapus Tanaman)
+ */
+public function destroy($id)
+{
+    $plant = Plant::find($id);
+    if (!$plant) return response()->json(['message' => 'Tanaman tidak ditemukan'], 404);
+
+    // 1. Hapus File Gambar Fisik
+    if ($plant->image_path) {
+        Storage::delete('public/plants/' . $plant->image_path);
+    }
+
+    // 2. Hapus Data di Database
+    $plant->delete();
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Tanaman berhasil dihapus'
+    ]);
+}
 }
