@@ -203,6 +203,17 @@ body {
     object-position: 50% 50%;
 }
 
+/* Ensure avatar images render cleanly and are not shown as inline artifacts */
+.message-avatar img,
+.message-avatar-img {
+    display: block;
+    border-radius: 50%;
+}
+
+.message-avatar {
+    overflow: hidden;
+}
+
 .message-content {
     flex: 1;
     display: flex;

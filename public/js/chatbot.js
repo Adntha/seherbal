@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners();
     autoResizeTextarea();
     initializeWelcomeMessageTime();
+    preloadProfileImage();
 });
 
 // Initialize welcome message time with current client time
@@ -29,6 +30,12 @@ function initializeWelcomeMessageTime() {
         });
         welcomeTimeElement.textContent = currentTime;
     }
+}
+
+// Preload profile image so avatar appears immediately when user sends a message
+function preloadProfileImage() {
+    const img = new Image();
+    img.src = '/images/ProfileUser.png';
 }
 
 // Setup Event Listeners
@@ -162,16 +169,72 @@ function addMessage(text, sender = 'bot', isError = false) {
 
 // Format message text (convert line breaks to paragraphs)
 function formatMessage(text) {
-    // Split by double line breaks for paragraphs
-    const paragraphs = text.split('\n\n').filter(p => p.trim());
-    
-    if (paragraphs.length > 1) {
-        return paragraphs.map(p => `<p>${escapeHtml(p.trim())}</p>`).join('');
-    } else {
-        // Split by single line breaks
-        const lines = text.split('\n').filter(l => l.trim());
-        return lines.map(l => `<p>${escapeHtml(l.trim())}</p>`).join('');
-    }
+    // Normalize and clean up
+    let s = String(text || '').replace(/\r/g, '').trim();
+
+    // Remove simple Markdown emphasis markers like **bold** and *italic*
+    s = s.replace(/\*\*(.*?)\*\*/g, '$1').replace(/\*(.*?)\*/g, '$1');
+
+    // Collapse excessive blank lines
+    s = s.replace(/\n{3,}/g, '\n\n');
+
+    // Extract fenced code blocks and replace with placeholders
+    const codeBlocks = [];
+    s = s.replace(/```([\s\S]*?)```/g, function(_, code) {
+        codeBlocks.push(code);
+        return `@@CODEBLOCK${codeBlocks.length - 1}@@`;
+    });
+
+    const urlRegex = /((https?:\/\/|www\.)[^\s<>]+)/gi;
+
+    // Split into blocks (paragraphs)
+    const blocks = s.split('\n\n').map(b => b.trim()).filter(Boolean);
+
+    const htmlBlocks = blocks.map(block => {
+        const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+
+        // Unordered list (all lines start with - or *)
+        const isUnordered = lines.every(l => /^[-*]\s+/.test(l));
+        if (isUnordered) {
+            const items = lines.map(l => `<li>${escapeHtml(l.replace(/^[-*]\s+/, ''))}</li>`).join('');
+            return `<ul>${items}</ul>`;
+        }
+
+        // Ordered list (all lines start with 1. 2. etc.)
+        const isOrdered = lines.every(l => /^\d+\.\s+/.test(l));
+        if (isOrdered) {
+            const items = lines.map(l => `<li>${escapeHtml(l.replace(/^\d+\.\s+/, ''))}</li>`).join('');
+            return `<ol>${items}</ol>`;
+        }
+
+        // Regular paragraph: join lines with space to avoid single-line breaks creating many <p>
+        let paragraph = lines.join(' ');
+
+        // Convert URLs to anchors
+        paragraph = paragraph.replace(urlRegex, function(url) {
+            let href = url;
+            if (!/^https?:\/\//i.test(href)) href = 'http://' + href;
+            return `<a href="${href}" target="_blank" rel="noopener noreferrer">${escapeHtml(url)}</a>`;
+        });
+
+        return `<p>${escapeHtml(paragraph).replace(/&lt;a href=&quot;(.*?)&quot;&gt;(.*?)&lt;\/a&gt;/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$2</a>')}</p>`;
+    });
+
+    // Restore code blocks placeholders
+    let result = htmlBlocks.join('');
+    result = result.replace(/@@CODEBLOCK(\d+)@@/g, function(_, idx) {
+        const code = escapeHtml(codeBlocks[Number(idx)] || '');
+        return `<pre><code>${code}</code></pre>`;
+    });
+
+    // Final pass: convert remaining plain URLs (if any) into links
+    result = result.replace(urlRegex, function(url) {
+        let href = url;
+        if (!/^https?:\/\//i.test(href)) href = 'http://' + href;
+        return `<a href="${href}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+    });
+
+    return result;
 }
 
 // Escape HTML to prevent XSS
