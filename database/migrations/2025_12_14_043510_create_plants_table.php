@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('part_used');
 
             // data visual & pencarian (frontend)
-            $table->string('description');
+            $table->longText('description');
             $table->string('keywords');
             $table->string('image_path');
 

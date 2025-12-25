@@ -68,11 +68,15 @@ public function store(Request $request)
     $validator = Validator::make($request->all(), [
         'name' => 'required|string',
         'latin_name' => 'required|string',
+        'family' => 'required|string',
+        'part_used' => 'required|string',
+        'keywords' => 'required|string',
+        'side_effects' => 'nullable|string',
         // Gambar wajib ada saat create
         'image' => 'required|image|mimes:jpeg,png,jpg|max:2048', 
-        'description' => 'required',
-        'benefits' => 'required',
-        'processing' => 'required',
+        'description' => 'required|string',
+        'benefits' => 'required|string',
+        'processing' => 'required|string',
     ]);
 
     if ($validator->fails()) {
@@ -90,6 +94,8 @@ public function store(Request $request)
     $plant = Plant::create([
         'name' => $request->name,
         'latin_name' => $request->latin_name,
+        'family' => $request->family,
+        'part_used' => $request->part_used,
         'image_path' => $imageName, // Simpan nama filenya saja
         'description' => $request->description,
         'benefits' => $request->benefits,
@@ -116,7 +122,15 @@ public function update(Request $request, $id)
     // Validasi (Gambar boleh kosong kalau tidak mau diganti)
     $validator = Validator::make($request->all(), [
         'name' => 'required|string',
-        'image' => 'nullable|image|max:2048', // Nullable
+        'latin_name' => 'required|string',
+        'family' => 'required|string',
+        'part_used' => 'required|string',
+        'keywords' => 'required|string',
+        'side_effects' => 'nullable|string',
+        'description' => 'required|string',
+        'benefits' => 'required|string',
+        'processing' => 'required|string',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Nullable
     ]);
 
     if ($validator->fails()) {
@@ -143,10 +157,13 @@ public function update(Request $request, $id)
     $plant->update([
         'name' => $request->name,
         'latin_name' => $request->latin_name,
+        'family' => $request->family,
+        'part_used' => $request->part_used,
         'description' => $request->description,
         'benefits' => $request->benefits,
         'processing' => $request->processing,
         'side_effects' => $request->side_effects,
+        'keywords' => $request->keywords,
         'image_path' => $plant->image_path, // Simpan perubahan image_path jika ada
     ]);
 

@@ -42,12 +42,11 @@ class ChatbotController extends Controller
         // Send to chatbot service
         $result = $this->chatbotService->sendMessage($userMessage);
 
-        $aiReply = $result['reply'] ?? $result['message'] ?? null;
-
-        if($aiReply) {
+        // Save to history if successful
+        if($result['success'] && isset($result['message'])) {
             ChatHistory::create([
                 'user_question' => $userMessage,
-                'ai_response' => $aiReply
+                'ai_response' => $result['message']
             ]);
         }
 
