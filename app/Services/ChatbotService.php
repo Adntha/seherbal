@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use App\Models\Plant;
 
 class ChatbotService
 {
@@ -20,18 +21,20 @@ class ChatbotService
     }
 
     /**
-     * Load herbal plants dataset from JSON file
+     * Load herbal plants dataset from database
      */
     private function loadDataset()
     {
-        $jsonPath = database_path('data/dataset_tanaman_herbal.json');
-        
-        if (file_exists($jsonPath)) {
-            $jsonContent = file_get_contents($jsonPath);
-            $this->dataset = json_decode($jsonContent, true);
-        } else {
+        try {
+            // Ambil semua tanaman dari database MySQL
+            $this->dataset = Plant::all()->toArray();
+            
+            if (empty($this->dataset)) {
+                Log::warning('Tidak ada data tanaman herbal di database');
+            }
+        } catch (\Exception $e) {
             $this->dataset = [];
-            Log::warning('Dataset tanaman herbal tidak ditemukan di: ' . $jsonPath);
+            Log::error('Error loading dataset from database: ' . $e->getMessage());
         }
     }
 
@@ -48,21 +51,21 @@ class ChatbotService
         
         foreach ($this->dataset as $plant) {
             $context .= "---\n";
-            $context .= "Nama: {$plant['Nama_Lokal']}\n";
-            $context .= "Nama Latin: {$plant['Nama_Ilmiah_Latin']}\n";
-            $context .= "Famili: {$plant['Kategori_Famili']}\n";
-            $context .= "Bagian Digunakan: {$plant['Bagian_Digunakan']}\n";
-            $context .= "Khasiat: {$plant['Khasiat_Utama']}\n";
+            $context .= "Nama: {$plant['name']}\n";
+            $context .= "Nama Latin: {$plant['latin_name']}\n";
+            $context .= "Famili: {$plant['family']}\n";
+            $context .= "Bagian Digunakan: {$plant['part_used']}\n";
+            $context .= "Khasiat: {$plant['benefits']}\n";
             
-            if (!empty($plant['Keywords_Synonyms'])) {
-                $context .= "Kata Kunci: " . implode(', ', $plant['Keywords_Synonyms']) . "\n";
+            if (!empty($plant['keywords'])) {
+                $context .= "Kata Kunci: {$plant['keywords']}\n";
             }
             
-            $context .= "Deskripsi: {$plant['Ringkasan_Snippet']}\n";
-            $context .= "Cara Penggunaan: {$plant['Detail_Penggunaan']}\n";
+            $context .= "Deskripsi: {$plant['description']}\n";
+            $context .= "Cara Penggunaan: {$plant['processing']}\n";
             
-            if (!empty($plant['Peringatan_Efek_Samping'])) {
-                $context .= "Peringatan: {$plant['Peringatan_Efek_Samping']}\n";
+            if (!empty($plant['side_effects'])) {
+                $context .= "Peringatan: {$plant['side_effects']}\n";
             }
             
             $context .= "\n";

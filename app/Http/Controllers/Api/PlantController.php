@@ -66,7 +66,7 @@ public function store(Request $request)
 {
     // A. Validasi
     $validator = Validator::make($request->all(), [
-        'name' => 'required|string',
+        'name' => 'required|string|unique:plants,name',
         'latin_name' => 'required|string',
         'family' => 'required|string',
         'part_used' => 'required|string',
@@ -77,6 +77,14 @@ public function store(Request $request)
         'description' => 'required|string',
         'benefits' => 'required|string',
         'processing' => 'required|string',
+    ], [
+        'name.unique' => 'Tanaman dengan nama ini sudah terdaftar di database',
+        'name.required' => 'Nama tanaman wajib diisi',
+        'latin_name.required' => 'Nama latin wajib diisi',
+        'image.required' => 'Gambar tanaman wajib diunggah',
+        'image.image' => 'File harus berupa gambar',
+        'image.mimes' => 'Format gambar harus jpeg, png, atau jpg',
+        'image.max' => 'Ukuran gambar maksimal 2MB',
     ]);
 
     if ($validator->fails()) {
