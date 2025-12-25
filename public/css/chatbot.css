@@ -5,19 +5,20 @@
 }
 
 :root {
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --primary-color: #3A7403;
+    --primary-gradient: linear-gradient(135deg, #3A7403 0%, #2d5a02 100%);
+    --secondary-gradient: linear-gradient(135deg, #52b202 0%, #3A7403 100%);
     --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --bg-primary: #0f0f1e;
-    --bg-secondary: #1a1a2e;
-    --bg-tertiary: #16213e;
-    --text-primary: #ffffff;
-    --text-secondary: #b8b8d1;
-    --text-muted: #6b6b8c;
-    --border-color: rgba(255, 255, 255, 0.1);
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --bg-primary: #E5ECE2;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f0f1ed;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --text-muted: #888888;
+    --border-color: rgba(58, 116, 3, 0.15);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
@@ -67,19 +68,26 @@ body {
 .bot-avatar {
     width: 56px;
     height: 56px;
-    background: rgba(255, 255, 255, 0.2);
+    background: #E5ECE1;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(58, 116, 3, 0.2);
 }
 
 .bot-avatar svg {
     width: 32px;
     height: 32px;
     color: white;
+}
+
+.bot-avatar-img {
+    width: 75%;
+    height: 75%;
+    object-fit: contain;
+    object-position: 50% 50%;
 }
 
 .header-text h1 {
@@ -122,7 +130,7 @@ body {
     flex: 1;
     overflow-y: auto;
     padding: 24px;
-    background: var(--bg-primary);
+    background: #ffffff;
     scroll-behavior: smooth;
 }
 
@@ -140,7 +148,7 @@ body {
 }
 
 .messages-container::-webkit-scrollbar-thumb:hover {
-    background: #667eea;
+    background: #3A7403;
 }
 
 /* Message */
@@ -165,7 +173,7 @@ body {
 .message-avatar {
     width: 40px;
     height: 40px;
-    background: var(--primary-gradient);
+    background: transparent;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -173,10 +181,37 @@ body {
     flex-shrink: 0;
 }
 
+.bot-message .message-avatar {
+    background: #E5ECE1;
+    border: 2px solid rgba(58, 116, 3, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
 .message-avatar svg {
     width: 24px;
     height: 24px;
     color: white;
+}
+
+.message-avatar-img {
+    width: 75%;
+    height: 75%;
+    object-fit: contain;
+    object-position: 50% 50%;
+}
+
+/* Ensure avatar images render cleanly and are not shown as inline artifacts */
+.message-avatar img,
+.message-avatar-img {
+    display: block;
+    border-radius: 50%;
+}
+
+.message-avatar {
+    overflow: hidden;
 }
 
 .message-content {
@@ -195,14 +230,20 @@ body {
 }
 
 .bot-message .message-bubble {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-    border-color: rgba(102, 126, 234, 0.3);
+    background: #3A7403;
+    border-color: #3A7403;
+    color: white;
 }
 
 .message-bubble p {
     margin-bottom: 12px;
     color: var(--text-primary);
     font-size: 15px;
+}
+
+/* Ensure bot message text is white */
+.bot-message .message-bubble p {
+    color: #ffffff;
 }
 
 .message-bubble p:last-child {
@@ -221,7 +262,11 @@ body {
 }
 
 .user-message .message-avatar {
-    background: var(--secondary-gradient);
+    background: #E5ECE1;
+    border: 2px solid rgba(58, 116, 3, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .user-message .message-content {
@@ -229,8 +274,9 @@ body {
 }
 
 .user-message .message-bubble {
-    background: var(--secondary-gradient);
-    border-color: transparent;
+    background: #E5ECE1;
+    border-color: #E5ECE1;
+    color: var(--text-primary);
 }
 
 .user-message .message-time {
@@ -305,8 +351,8 @@ body {
 }
 
 .suggestion-btn:hover {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-    border-color: rgba(102, 126, 234, 0.5);
+    background: linear-gradient(135deg, rgba(58, 116, 3, 0.15) 0%, rgba(82, 178, 2, 0.15) 100%);
+    border-color: rgba(58, 116, 3, 0.4);
     transform: translateX(4px);
     color: var(--text-primary);
 }
@@ -347,8 +393,8 @@ body {
 
 .message-input:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #3A7403;
+    box-shadow: 0 0 0 3px rgba(58, 116, 3, 0.1);
 }
 
 .message-input::placeholder {
@@ -371,7 +417,7 @@ body {
 
 .send-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 12px rgba(58, 116, 3, 0.35);
 }
 
 .send-btn:active:not(:disabled) {
@@ -448,6 +494,8 @@ body {
 
 /* Error Message */
 .error-message .message-bubble {
-    background: linear-gradient(135deg, rgba(245, 87, 108, 0.1) 0%, rgba(240, 147, 251, 0.1) 100%);
-    border-color: rgba(245, 87, 108, 0.3);
+    /* Match bot message styling for errors */
+    background: #3A7403;
+    border-color: #3A7403;
+    color: #ffffff;
 }
