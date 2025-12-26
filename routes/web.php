@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatbotController;
+use App\Http\Controllers\TanamanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,6 @@ Route::get('/', function () {
 });
 
 Route::get('/chatbot', [ChatbotController::class, 'index']);
+Route::get('/', [TanamanController::class, 'index']);
+// Pastikan URL-nya adalah /plants/all
+Route::get('/plants/all', [App\Http\Controllers\TanamanController::class, 'loadAll']);
