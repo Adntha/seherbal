@@ -15,21 +15,31 @@
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-spinner"></div>
+    </div>
     <!-- Header Section -->
     <header>
         <div class="container">
             <div class="header-content">
                 <!-- Logo -->
                 <div class="logo">
-                    <span class="logo-se">Se</span><span class="logo-herbal">Herbal</span>
+                    <a href="#home" class="logo-se">Se</a><a class="logo-herbal">Herbal</a>
                 </div>
                 
                 <!-- Navigation -->
-                <nav>
-                    <ul>
-                        <li><a href="/" class="active">Home</a></li>
-                        <li><a href="#cari">Cari</a></li>
-                        <li><a href="#kontak">Kontak</a></li>
+                <nav>  
+                    <ul class="nav-menu" id="nav-menu">
+                        <li class="nav-item">
+                            <a href="#home" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#cari" class="nav-link">Cari</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#kontak" class="nav-link">Kontak</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -37,7 +47,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section id="home" class="hero-section">
         <div class="container">
             <div class="hero-content">
                 <!-- Hero Text -->
@@ -51,27 +61,162 @@
                     <p class="hero-description">
                         Tanaman herbal menyimpan manfaat untuk menjaga kesehatan, meredakan keluhan ringan, dan mendukung gaya hidup yang lebih alami. Jelajahi beragam tanaman dan khasiatnya di SeHerbal.
                     </p>
-                    <a href="#selengkapnya" class="cta-button">Selengkapnya</a>
+                    <a href="#cari" class="cta-button">Selengkapnya</a>
                 </div>
 
                 <!-- Hero Image -->
                 <div class="hero-image-container">
                     <div class="hero-image-circle">
-                        <img src="{{ asset('images/leaf-hero.jpg') }}" alt="Tanaman Herbal Alami">
+                        <img src="{{ asset('images/leaf.png') }}" alt="Tanaman Herbal Alami">
                     </div>
                     <!-- Extended Leaf -->
-                    <img src="{{ asset('images/leaf-large.png') }}" alt="Daun Herbal" class="hero-leaf-extend">
+                    <img src="{{ asset('images/leaf-large.png') }}" alt="Daun Herbal" class="hero-leaf-extend" style="--rotation: 25deg;">
                 </div>
             </div>
         </div>
 
         <!-- Decorative Leaves -->
         <div class="decorative-leaves">
-            <img src="{{ asset('images/leaf-large.png') }}" alt="" class="leaf-decoration leaf-top-right" style="--rotation: -15deg;">
+            <img src="{{ asset('images/leaf-large.png') }}" alt="" class="leaf-decoration leaf-top-right" style="--rotation: -30deg;">
             <img src="{{ asset('images/leaf-small.png') }}" alt="" class="leaf-decoration leaf-top-small" style="--rotation: 25deg;">
             <img src="{{ asset('images/leaf-large.png') }}" alt="" class="leaf-decoration leaf-bottom-left" style="--rotation: 10deg;">
             <img src="{{ asset('images/leaf-small.png') }}" alt="" class="leaf-decoration leaf-bottom-center" style="--rotation: -20deg;">
             <img src="{{ asset('images/leaf-small.png') }}" alt="" class="leaf-decoration leaf-bottom-right" style="--rotation: 45deg;">
+        </div>
+    </section>
+
+    <!-- Cari Section -->
+    <section id="cari" class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="search-icon">🔍</i>
+                    <input type="text" id="searchInput" placeholder="Cari">
+                </div>
+            </div>
+            <div class="herbal-grid" id="herbalGrid">
+                @foreach($tanaman as $item)
+                <div class="herbal-card">
+                    <img src="{{ asset('storage/plants/' . $item->image_path) }}" alt="{{ $item->name }}">
+                    
+                    <div class="card-info">
+                        <h3>{{ $item->name }}</h3>
+                        <p>{{ $item->latin_name }}</p>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <div class="search-footer" id="searchFooter">
+                <a>Temukan Lebih Banyak</a>
+                <div class="scroll-indicator">
+                    <div class="scroll-arrow"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+        // Kita gunakan onclick langsung agar pasti terpancing
+        document.addEventListener('DOMContentLoaded', function () {
+            const footer = document.getElementById('searchFooter');
+            
+            if (footer) {
+                footer.style.cursor = 'pointer'; // Memastikan kursor jadi tangan
+                
+                footer.onclick = function() {
+                    console.log("Klik terdeteksi melalui onclick!");
+                    
+                    fetch('/plants/all')
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log("Data diterima:", data);
+                            const grid = document.getElementById('herbalGrid');
+                            
+                            // Kosongkan dan isi ulang
+                            grid.innerHTML = '';
+                            data.forEach(item => {
+                                grid.insertAdjacentHTML('beforeend', `
+                                    <div class="herbal-card">
+                                        <img src="/storage/plants/${item.image_path}" alt="${item.name}">
+                                        <div class="card-info">
+                                            <h3>${item.name}</h3>
+                                            <p>${item.latin_name}</p>
+                                        </div>
+                                    </div>
+                                `);
+                            });
+                            
+                            // Sembunyikan tombol
+                            footer.style.display = 'none';
+                        })
+                        .catch(err => alert("Gagal mengambil data: " + err));
+                };
+            } else {
+                alert("EROR: ID searchFooter tidak ditemukan di halaman ini!");
+            }
+        });
+        </script>
+    </section>
+
+    <section id="kontak" class="contact-section">
+        <div class="kontak-background"> 
+            <img src="{{ asset('images/header-kontak.png') }}" alt="">
+            <div class="background-overlay"></div>
+        </div>
+        <div class="contact-container">
+            <div class="contact-header">
+                <h2>Ada yang Bisa Kami Bantu?</h2>
+                <p>Punya pertanyaan seputar manfaat tanaman atau butuh saran kesehatan alami? Kirimkan pesanmu, kami akan segera membalasnya.</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-info">
+                    <h3>Saluran Sehat</h3>
+                    <p>Tim ahli kami dan Herbabot siap memberikan informasi terbaik untuk perjalanan sehat alamimu.</p>
+                    
+
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+628123456789<br>+628987654321</span> 
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@seherbal.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-share-alt"></i>
+                        <span>Bagikan Sehatmu</span>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form action="#" id="formKontak">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nama</label>
+                                <input type="text" placeholder="Sudha Adi">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" placeholder="sudhaadi@gmail.com">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Subjek</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="label-green">Pesan</label>
+                            <textarea placeholder="Tulis pesan atau pertanyaanmu di sini..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-kirim">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+
+            <footer class="contact-footer">
+                <p>@SeHerbal | 2025</p>
+            </footer>
         </div>
     </section>
 
