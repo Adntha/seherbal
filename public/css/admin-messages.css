@@ -1,0 +1,51 @@
+/* Layout Khusus Pesan */
+.unread {
+    font-weight: 600;
+    background-color: #f0fdf4 !important; /* Hijau sangat muda untuk pesan baru */
+}
+
+.sender-info small {
+    color: #6b7280;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Membatasi teks pesan agar tidak merusak lebar tabel */
+.msg-content {
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #4b5563;
+    font-size: 0.9rem;
+}
+
+/* Badge Status Pesan */
+.badge-new {
+    background-color: #16a34a;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+
+/* Efek Hover pada Baris Tabel */
+.data-table tbody tr:hover {
+    background-color: #f9fafb;
+    transition: background 0.2s;
+}
+
+/* Tombol Aksi Spesifik Pesan */
+.view-btn {
+    color: #2563eb;
+    margin-right: 10px;
+}
+
+.delete-btn {
+    color: #dc2626;
+    background: none;
+    border: none;
+    cursor: pointer;
+}

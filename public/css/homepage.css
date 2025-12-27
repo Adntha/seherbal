@@ -308,9 +308,10 @@ header {
     }
 }
 
+/* Section Utama */
 .search-section {
     background-color: #E9F1E8;
-    padding: 80px 0 40px 0; /* Padding atas besar agar tidak tertutup header */
+    padding: 80px 0 40px 0;
     min-height: 100vh;
 }
 
@@ -338,46 +339,53 @@ header {
     color: #666;
 }
 
-/* Container Utama */
+/* Grid Tanaman (5 Kolom) */
 .herbal-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Membuat 5 kolom sama rata */
-    gap: 30px; /* Jarak antar kotak */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
     width: 85%;
     margin: 0 auto;
 }
 
-/* Styling Kartu/Kotak */
+/* Menjaga link tetap bersih dan memenuhi grid */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    justify-content: center;
+}
+
+/* Pastikan herbal-card tetap mengambil lebar penuh di dalam link */
+.card-link .herbal-card {
+    width: 100%;
+}
+
+/* Styling Kartu */
 .herbal-card {
     background: #ffffff;
-    border-radius: 15px; /* Sudut membulat */
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Shadow halus */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    height: 100%; /* Memastikan tinggi semua kotak sama */
+    height: 100%;
     width: 100%;
     max-width: 220px;
-    max-height: 240px;
+    margin: 0 auto; /* Menengahkan kartu jika grid sisa */
+    animation: fadeIn 0.5s ease forwards;
 }
 
-.herbal-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Image di dalam kotak */
 .herbal-card img {
-    max-height: 130px; /* Tinggi gambar tetap */
-    object-fit: cover; /* Gambar tidak penyet/ketarik */
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
 }
 
-/* Info Teks */
 .card-info {
     padding: 15px;
     text-align: center;
-    background: #fff;
     flex-grow: 1;
 }
 
@@ -393,46 +401,33 @@ header {
     font-size: 0.85rem;
     font-style: italic;
     color: #666;
-    margin: 0;
 }
 
-/* Responsif untuk layar HP */
-@media (max-width: 1024px) {
-    .herbal-grid { grid-template-columns: repeat(3, 1fr); }
+/* Hover Effect */
+.herbal-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-@media (max-width: 600px) {
-    .herbal-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
+/* Footer & Load More */
 .search-footer {
-    display: flex;           /* Aktifkan mode flex */
-    flex-direction: column;  /* Susun teks dan panah secara vertikal (atas-bawah) */
-    align-items: center;     /* KUNCI: Menengahkan secara horizontal */
-    justify-content: center; /* Menengahkan secara vertikal (jika ada tinggi tetap) */
-    width: 100%;             /* Pastikan mengambil lebar penuh agar center berfungsi */
-    margin-top: 50px;        /* Jarak antara grid tanaman dengan footer ini */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 50px;
     text-align: center;
+    cursor: pointer;
 }
 
 .search-footer a {
     text-decoration: none;
-    color: #333;             /* Sesuaikan warna */
+    color: #333;
     font-weight: 600;
-    cursor: pointer;
-    margin-bottom: 10px;     /* Jarak antara teks dengan panah */
-}
-
-/* Jika scroll-indicator menggunakan panah CSS */
-.scroll-indicator {
-    display: flex;
-    justify-content: center;
+    margin-bottom: 10px;
 }
 
 .scroll-indicator {
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
     animation: bounce 2s infinite;
 }
 
@@ -444,23 +439,29 @@ header {
     transform: rotate(45deg);
 }
 
-#searchFooter {
-    cursor: pointer;
-    transition: opacity 0.3s ease;
+/* Responsif */
+@media (max-width: 1200px) {
+    .herbal-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
-#searchFooter:hover {
-    opacity: 0.7;
+@media (max-width: 1024px) {
+    .herbal-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Tambahkan sedikit animasi agar kartu muncul halus */
-.herbal-card {
-    animation: fadeIn 0.5s ease forwards;
+@media (max-width: 650px) {
+    .herbal-grid { grid-template-columns: repeat(2, 1fr); width: 95%; }
 }
 
+/* Animasi */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
 }
 
 .contact-section {

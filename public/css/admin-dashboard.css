@@ -1,0 +1,50 @@
+/* Reset & Base */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+body { background-color: #e9f0e8; color: #333; }
+
+.dashboard-wrapper { display: flex; min-height: 100vh; }
+
+/* Sidebar */
+.sidebar { width: 240px; background-color: #4d6b31; color: white; padding: 30px 20px; }
+.brand { font-size: 24px; margin-bottom: 40px; padding-left: 10px; }
+.nav-item { 
+    display: block; padding: 12px 15px; color: rgba(255,255,255,0.8); 
+    text-decoration: none; border-radius: 10px; margin-bottom: 10px; transition: 0.3s;
+    background: none; border: none; width: 100%; text-align: left; cursor: pointer; font-size: 16px;
+}
+.nav-item.active, .nav-item:hover { background-color: rgba(255,255,255,0.2); color: white; }
+.sidebar-nav i { margin-right: 10px; width: 20px; }
+
+/* Main Content */
+.main-content { flex: 1; padding: 40px; }
+.content-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+.content-header h1 { font-size: 26px; }
+.content-header p { color: #666; font-size: 14px; }
+
+.btn-add { background-color: #3e5a23; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; }
+
+/* Controls & Stats */
+.table-controls { display: grid; grid-template-columns: 1fr auto auto; gap: 15px; margin-bottom: 20px; }
+.search-wrapper { background: white; border-radius: 15px; display: flex; align-items: center; padding: 0 15px; }
+.search-wrapper input { border: none; padding: 12px; width: 100%; outline: none; font-size: 16px; }
+.stats-box { background: white; padding: 10px 20px; border-radius: 15px; min-width: 140px; }
+.stats-label { display: block; font-size: 12px; font-weight: bold; }
+.stats-value { font-size: 18px; font-weight: bold; }
+
+/* Table Styling */
+.table-card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th { text-align: left; padding: 15px; border-bottom: 2px solid #f0f0f0; color: #555; }
+.data-table td { padding: 15px; border-bottom: 1px solid #f9f9f9; }
+
+.img-preview { width: 45px; height: 45px; border-radius: 8px; object-fit: cover; }
+.status-badge { padding: 5px 12px; border-radius: 8px; font-size: 12px; }
+.status-badge.terbit { background-color: #e6f4ea; color: #1e7e34; }
+.status-badge.draft { background-color: #f1f1f1; color: #666; }
+
+.action-btns button { 
+    background: none; border: none; cursor: pointer; font-size: 18px; margin: 0 5px; transition: 0.2s;
+}
+.edit-btn { color: #555; }
+.delete-btn { color: #d9534f; }
+.edit-btn:hover { color: #000; }
