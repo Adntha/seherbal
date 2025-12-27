@@ -94,18 +94,21 @@
                     <input type="text" id="searchInput" placeholder="Cari">
                 </div>
             </div>
+
             <div class="herbal-grid" id="herbalGrid">
                 @foreach($tanaman as $item)
-                <div class="herbal-card">
-                    <img src="{{ asset('storage/plants/' . $item->image_path) }}" alt="{{ $item->name }}">
-                    
-                    <div class="card-info">
-                        <h3>{{ $item->name }}</h3>
-                        <p>{{ $item->latin_name }}</p>
+                <a href="{{ route('tanaman.detail', $item->id) }}" class="card-link">
+                    <div class="herbal-card">
+                        <img src="{{ asset('storage/plants/' . $item->image_path) }}" alt="{{ $item->name }}">
+                        <div class="card-info">
+                            <h3>{{ $item->name }}</h3>
+                            <p>{{ $item->latin_name }}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
                 @endforeach
             </div>
+
             <div class="search-footer" id="searchFooter">
                 <a>Temukan Lebih Banyak</a>
                 <div class="scroll-indicator">
@@ -113,27 +116,45 @@
                 </div>
             </div>
         </div>
+
         <script>
-        // Kita gunakan onclick langsung agar pasti terpancing
         document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('searchInput');
+            const herbalGrid = document.getElementById('herbalGrid');
             const footer = document.getElementById('searchFooter');
-            
+
+            // --- 1. LOGIKA LIVE SEARCH ---
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const term = searchInput.value.toLowerCase();
+                    const cards = herbalGrid.getElementsByClassName('herbal-card');
+
+                    Array.from(cards).forEach(card => {
+                        const name = card.querySelector('h3').textContent.toLowerCase();
+                        const latin = card.querySelector('p').textContent.toLowerCase();
+                        
+                        // Filter berdasarkan Nama Indonesia atau Nama Latin
+                        if (name.includes(term) || latin.includes(term)) {
+                            card.style.display = ""; 
+                        } else {
+                            card.style.display = "none";
+                        }
+                    });
+                });
+            }
+
+            // --- 2. LOGIKA FETCH DATA (Load More) ---
             if (footer) {
-                footer.style.cursor = 'pointer'; // Memastikan kursor jadi tangan
-                
                 footer.onclick = function() {
-                    console.log("Klik terdeteksi melalui onclick!");
-                    
+                    // Pastikan route ini sesuai dengan di web.php
                     fetch('/plants/all')
                         .then(res => res.json())
                         .then(data => {
-                            console.log("Data diterima:", data);
-                            const grid = document.getElementById('herbalGrid');
+                            // Kosongkan grid sebelum mengisi 35 data baru
+                            herbalGrid.innerHTML = '';
                             
-                            // Kosongkan dan isi ulang
-                            grid.innerHTML = '';
                             data.forEach(item => {
-                                grid.insertAdjacentHTML('beforeend', `
+                                herbalGrid.insertAdjacentHTML('beforeend', `
                                     <div class="herbal-card">
                                         <img src="/storage/plants/${item.image_path}" alt="${item.name}">
                                         <div class="card-info">
@@ -144,13 +165,11 @@
                                 `);
                             });
                             
-                            // Sembunyikan tombol
+                            // Sembunyikan tombol setelah semua data tampil
                             footer.style.display = 'none';
                         })
-                        .catch(err => alert("Gagal mengambil data: " + err));
+                        .catch(err => console.error("Gagal memuat data:", err));
                 };
-            } else {
-                alert("EROR: ID searchFooter tidak ditemukan di halaman ini!");
             }
         });
         </script>
@@ -316,5 +335,6 @@
             }
         }
     </style>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

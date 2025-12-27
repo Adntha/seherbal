@@ -2,22 +2,43 @@
 
 namespace App\Http\Controllers;
 
-// 1. Ganti Tanaman menjadi Plant agar sesuai dengan Seeder
 use App\Models\Plant; 
 use Illuminate\Http\Request;
 
 class TanamanController extends Controller
 {
+    // Ini tetap untuk halaman depan (welcome) - JANGAN DIUBAH
     public function index()
     {
-        // Gunakan take(10) untuk membatasi hanya 10 data pertama
         $tanaman = \App\Models\Plant::take(10)->get(); 
         return view('welcome', compact('tanaman'));
     }
 
-    // Tambahkan fungsi ini di TanamanController.php
+    // Ini tetap untuk API chatbot/search - JANGAN DIUBAH
     public function loadAll() {
         return response()->json(\App\Models\Plant::all());
+    }
+
+    public function show($id)
+    {
+    // Cari tanaman berdasarkan ID atau berikan error 404 jika tidak ada
+    $tanaman = \App\Models\Plant::findOrFail($id);
+    
+    return view('tanaman-detail', compact('tanaman'));
+    }
+
+    // --- TAMBAHKAN FUNGSI BARU DI BAWAH INI UNTUK DASHBOARD ---
+    public function adminIndex()
+    {
+        // Mengambil semua data tanaman untuk tabel dashboard
+        $tanaman = Plant::all(); 
         
-}
+        // Menghitung statistik berdasarkan data di database
+        $totalTanaman = $tanaman->count();
+        // Asumsi ada kolom 'status' di tabel plants kamu
+        // $totalDraft = Plant::where('status', 'draft')->count();
+        $totalDraft = 0;
+
+        return view('admin.dashboard', compact('tanaman', 'totalTanaman', 'totalDraft'));
+    }
 }
