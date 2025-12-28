@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use App\Models\Plant;
 
 class ChatbotService
 {
@@ -20,18 +21,20 @@ class ChatbotService
     }
 
     /**
-     * Load herbal plants dataset from JSON file
+     * Load herbal plants dataset from database MySQL
      */
     private function loadDataset()
     {
-        $jsonPath = database_path('data/dataset_tanaman_herbal.json');
-        
-        if (file_exists($jsonPath)) {
-            $jsonContent = file_get_contents($jsonPath);
-            $this->dataset = json_decode($jsonContent, true);
-        } else {
+        try {
+            // Ambil semua tanaman dari database MySQL
+            $this->dataset = Plant::all()->toArray();
+            
+            if (empty($this->dataset)) {
+                Log::warning('Tidak ada data tanaman herbal di database');
+            }
+        } catch (\Exception $e) {
             $this->dataset = [];
-            Log::warning('Dataset tanaman herbal tidak ditemukan di: ' . $jsonPath);
+            Log::error('Error loading dataset from database: ' . $e->getMessage());
         }
     }
 
