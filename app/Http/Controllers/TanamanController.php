@@ -19,10 +19,10 @@ class TanamanController extends Controller
         return response()->json(\App\Models\Plant::all());
     }
 
-    public function show($id)
+    public function show($slug)
     {
     // Cari tanaman berdasarkan ID atau berikan error 404 jika tidak ada
-    $tanaman = \App\Models\Plant::findOrFail($id);
+    $tanaman = \App\Models\Plant::where('slug', $slug)->firstOrFail();
     
     return view('tanaman-detail', compact('tanaman'));
     }

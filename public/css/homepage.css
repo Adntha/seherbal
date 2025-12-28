@@ -339,26 +339,23 @@ header {
     color: #666;
 }
 
-/* Grid Tanaman (5 Kolom) */
+/* Container Utama - Gunakan auto-fill agar kartu merapat otomatis */
 .herbal-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    /* auto-fill + minmax adalah kunci agar grid re-flow (naik/merapat) */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
     gap: 30px;
     width: 85%;
     margin: 0 auto;
+    align-items: start;
 }
 
-/* Menjaga link tetap bersih dan memenuhi grid */
+/* Pastikan link pembungkus hilang total dari alur dokumen saat display: none */
 .card-link {
     text-decoration: none;
     color: inherit;
-    display: flex;
-    justify-content: center;
-}
-
-/* Pastikan herbal-card tetap mengambil lebar penuh di dalam link */
-.card-link .herbal-card {
-    width: 100%;
+    display: flex; /* Ini akan berubah jadi 'none' via JS saat difilter */
+    flex-direction: column;
 }
 
 /* Styling Kartu */
@@ -371,9 +368,9 @@ header {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 100%;
-    max-width: 220px;
-    margin: 0 auto; /* Menengahkan kartu jika grid sisa */
+    width: 100%; /* Biarkan kartu mengikuti lebar kolom grid */
+    /* HAPUS max-width: 220px agar kartu bisa mengisi ruang kolom */
+    /* HAPUS margin: 0 auto agar tidak dipaksa ke tengah kolom */
     animation: fadeIn 0.5s ease forwards;
 }
 

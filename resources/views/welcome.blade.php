@@ -97,7 +97,7 @@
 
             <div class="herbal-grid" id="herbalGrid">
                 @foreach($tanaman as $item)
-                <a href="{{ route('tanaman.detail', $item->id) }}" class="card-link">
+                <a href="{{ route('tanaman.detail', $item->slug) }}" class="card-link">
                     <div class="herbal-card">
                         <img src="{{ asset('storage/plants/' . $item->image_path) }}" alt="{{ $item->name }}">
                         <div class="card-info">
