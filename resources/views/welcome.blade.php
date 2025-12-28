@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="SeHerbal - Tanaman herbal menyimpan manfaat untuk menjaga kesehatan, meredakan keluhan ringan, dan mendukung gaya hidup yang lebih alami.">
     <title>SeHerbal - Herbal Alami Setiap Hari</title>
     
@@ -207,29 +208,71 @@
 
                 <div class="contact-form">
                     <form action="#" id="formKontak">
+                        @csrf
                         <div class="form-row">
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" placeholder="Sudha Adi">
+                                <input type="text" name="nama" id="inputNama" placeholder="Sudha Adi" required>
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" placeholder="sudhaadi@gmail.com">
+                                <input type="email" name="email" id="inputEmail" placeholder="sudhaadi@gmail.com" required>
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <label>Subjek</label>
-                            <input type="text">
+                            <input type="text" name="subjek" id="inputSubjek" required>
                         </div>
 
                         <div class="form-group">
                             <label class="label-green">Pesan</label>
-                            <textarea placeholder="Tulis pesan atau pertanyaanmu di sini..."></textarea>
+                            <textarea name="pesan" id="inputPesan" placeholder="Tulis pesan atau pertanyaanmu di sini..." required></textarea>
                         </div>
 
                         <button type="submit" class="btn-kirim">Kirim Pesan</button>
                     </form>
+                    
+                    <script>
+                    document.getElementById('formKontak').addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        const formData = new FormData(this);
+                        const submitBtn = this.querySelector('.btn-kirim');
+                        const originalText = submitBtn.textContent;
+                        
+                        // Disable button dan ubah text
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Mengirim...';
+                        
+                        fetch('{{ route("contact.send") }}', {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content || '{{ csrf_token() }}'
+                            },
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert(data.message);
+                                // Reset form
+                                document.getElementById('formKontak').reset();
+                            } else {
+                                alert('Terjadi kesalahan. Silakan coba lagi.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.');
+                        })
+                        .finally(() => {
+                            // Enable button kembali
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = originalText;
+                        });
+                    });
+                    </script>
                 </div>
             </div>
 

@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Dashboard Admin | SeHerbal</title>
     <link rel="stylesheet" href="{{ asset('css/admin-dashboard.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -36,11 +37,11 @@
                 </div>
                 <div class="stats-box">
                     <span class="stats-label">Total Tanaman</span>
-                    <span class="stats-value">30</span>
+                    <span class="stats-value">{{ $totalTanaman }}</span>
                 </div>
                 <div class="stats-box">
                     <span class="stats-label">Pending/Draft</span>
-                    <span class="stats-value">10</span>
+                    <span class="stats-value">{{ $totalDraft }}</span>
                 </div>
             </section>
 
@@ -56,17 +57,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Data akan di-render oleh admin-dashboard.js -->
                         <tr>
-                            <td><img src="https://via.placeholder.com/50" class="img-preview"></td>
-                            <td>Jahe Merah</td>
-                            <td>Rempah</td>
-                            <td><span class="status-badge terbit">Terbit</span></td>
-                            <td class="action-btns">
-                                <button class="edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
-                                <button class="delete-btn"><i class="fa-regular fa-trash-can"></i></button>
+                            <td colspan="5" style="text-align: center; padding: 40px; color: #9ca3af;">
+                                <i class="fa-solid fa-spinner fa-spin"></i> Memuat data...
                             </td>
                         </tr>
-                        </tbody>
+                    </tbody>
                 </table>
             </div>
         </main>
