@@ -29,6 +29,9 @@ Route::get('/plants/all', [App\Http\Controllers\TanamanController::class, 'loadA
 // Route untuk halaman detail tanaman
 Route::get('/tanaman/{id}', [TanamanController::class, 'show'])->name('tanaman.detail');
 
+// Route untuk user mengirim pesan (PUBLIC - tidak perlu login)
+Route::post('/contact/send', [MessageController::class, 'store'])->name('contact.send');
+
 // Menampilkan halaman login
 Route::get('/admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 
