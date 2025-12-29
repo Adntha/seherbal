@@ -135,14 +135,14 @@ class PlantController extends Controller
         // Validasi (gambar nullable untuk update)
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'latin_name' => 'required|string|max:255',
-            'family' => 'required|string|max:255',
-            'part_used' => 'required|string|max:255',
-            'keywords' => 'required|string',
+            'latin_name' => 'nullable|string|max:255',
+            'family' => 'nullable|string|max:255',
+            'part_used' => 'nullable|string|max:255',
+            'keywords' => 'nullable|string',
             'side_effects' => 'nullable|string',
-            'description' => 'required|string',
-            'benefits' => 'required|string',
-            'processing' => 'required|string',
+            'description' => 'nullable|string',
+            'benefits' => 'nullable|string',
+            'processing' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 

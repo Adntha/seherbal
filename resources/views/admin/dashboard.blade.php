@@ -68,8 +68,15 @@
                     </tbody>
                 </table>
             </div>
-        </main>
-    </div>
+
+    {{-- Script untuk simpan token ke localStorage --}}
+    @if(session('admin_token'))
+    <script>
+        // Simpan token dari session ke localStorage
+        localStorage.setItem('admin_token', '{{ session('admin_token') }}');
+        console.log('✅ Token saved to localStorage:', localStorage.getItem('admin_token').substring(0, 20) + '...');
+    </script>
+    @endif
 
     <script src="{{ asset('js/admin-dashboard.js') }}"></script>
 </body>

@@ -10,8 +10,13 @@
             <h2 class="form-title">Edit Tanaman Herbal</h2>
             
             <form id="editPlantForm" enctype="multipart/form-data">
-                @csrf
+                <!-- @csrf -->
                 <input type="hidden" id="plant_id" value="{{ $plant->id }}">
+                
+                {{-- Hidden fields for required database columns --}}
+                <input type="hidden" name="family" value="{{ $plant->family }}">
+                <input type="hidden" name="part_used" value="{{ $plant->part_used }}">
+                <input type="hidden" name="keywords" value="{{ $plant->keywords ?? '' }}">
 
                 <div class="form-main-layout">
                     <div class="form-left">
@@ -37,7 +42,7 @@
 
                         <div class="input-minimal-group">
                             <label>Cara Penggunaan</label>
-                            <textarea name="usage" rows="3" placeholder="Cara mengolah...">{{ $plant->usage }}</textarea>
+                            <textarea name="processing" rows="3" placeholder="Cara mengolah...">{{ $plant->processing }}</textarea>
                         </div>
                     </div>
 
@@ -66,6 +71,7 @@
             const editForm = document.getElementById("editPlantForm");
             const imageInput = document.getElementById("imageInput");
             const previewImg = document.getElementById("previewImg");
+            const submitBtn = editForm.querySelector('button[type="submit"]'); // Added this line
             
             // Mengambil ID dari input hidden yang baru kita tambahkan
             const plantId = document.getElementById("plant_id").value;
@@ -88,12 +94,44 @@
             editForm.addEventListener("submit", async function (e) {
                 e.preventDefault();
 
-                const formData = new FormData(editForm);
-                // Laravel spoofing method PUT
-                formData.append("_method", "PUT");
+                const formData = new FormData();
+                
+                // ✅ Add text fields
+                formData.append('name', editForm.querySelector('[name="name"]').value);
+                formData.append('latin_name', editForm.querySelector('[name="latin_name"]').value);
+                formData.append('description', editForm.querySelector('[name="description"]').value);
+                formData.append('benefits', editForm.querySelector('[name="benefits"]').value);
+                formData.append('processing', editForm.querySelector('[name="processing"]').value);
+                
+                // ✅ Add required hidden fields
+                formData.append('family', editForm.querySelector('[name="family"]').value);
+                formData.append('part_used', editForm.querySelector('[name="part_used"]').value);
+                formData.append('keywords', editForm.querySelector('[name="keywords"]').value);
+                
+                // ✅ Only add image if user selected a new file
+                const imageInput = document.getElementById('imageInput');
+                if (imageInput.files && imageInput.files[0]) {
+                    formData.append('image', imageInput.files[0]);
+                }
+
+                // No method spoofing - route is POST
+
+                // ✅ DEBUG: Log all form data
+                console.log('=== DEBUGGING FORM SUBMISSION ===');
+                console.log('API URL:', API_URL);
+                console.log('Token:', authToken ? 'EXISTS (' + authToken.substring(0, 20) + '...)' : 'NULL');
+                console.log('Form Data:');
+                for (let [key, value] of formData.entries()) {
+                    if (value instanceof File) {
+                        console.log(`  ${key}: [FILE] ${value.name} (${value.size} bytes)`);
+                    } else {
+                        console.log(`  ${key}: ${value}`);
+                    }
+                }
+                console.log('================================');
 
                 try {
-                    const submitBtn = editForm.querySelector('button[type="submit"]');
+                    // const submitBtn = editForm.querySelector('button[type="submit"]'); // Removed this line as it's declared above
                     const originalText = submitBtn.textContent;
                     submitBtn.textContent = "Menyimpan...";
                     submitBtn.disabled = true;
@@ -109,79 +147,31 @@
                     });
 
                     const result = await response.json();
+                    
+                    console.log('Response Status:', response.status);
+                    console.log('Response Data:', result);
 
                     if (response.ok) {
                         alert("Data tanaman berhasil diperbarui!");
                         window.location.href = "/admin/dashboard"; 
                     } else {
-                        alert("Gagal update: " + (result.message || "Terjadi kesalahan"));
-                        console.error(result.errors);
+                        // ✅ Show detailed error
+                        let errorMsg = "Gagal update:\n\n";
+                        if (result.errors) {
+                            for (let field in result.errors) {
+                                errorMsg += `${field}: ${result.errors[field].join(', ')}\n`;
+                            }
+                        } else {
+                            errorMsg += (result.message || "Terjadi kesalahan");
+                        }
+                        alert(errorMsg);
+                        console.error('Full error response:', result);
                     }
                 } catch (error) {
                     console.error("Error updating plant:", error);
                     alert("Terjadi kesalahan koneksi ke server.");
                 } finally {
-                    const submitBtn = editForm.querySelector('button[type="submit"]');
-                    submitBtn.textContent = "Simpan Perubahan";
-                    submitBtn.disabled = false;
-                }
-            });
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const editForm = document.getElementById("editPlantForm");
-            const imageInput = document.getElementById("imageInput");
-            const previewImg = document.getElementById("previewImg");
-            const submitBtn = document.getElementById("submitBtn");
-
-            const plantId = document.getElementById("plant_id").value;
-            const API_URL = `/api/plants/${plantId}`;
-            const authToken = localStorage.getItem("admin_token");
-
-            // 1. Live Preview Gambar saat File dipilih
-            imageInput.addEventListener("change", function () {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        previewImg.src = e.target.result;
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-
-            // 2. Submit Update via Fetch API
-            editForm.addEventListener("submit", async function (e) {
-                e.preventDefault();
-
-                const formData = new FormData(editForm);
-                formData.append("_method", "PUT"); // Method spoofing Laravel
-
-                try {
-                    submitBtn.textContent = "Menyimpan...";
-                    submitBtn.disabled = true;
-
-                    const response = await fetch(API_URL, {
-                        method: "POST", // Tetap POST karena FormData mengirim file
-                        headers: {
-                            "Authorization": `Bearer ${authToken}`,
-                            "Accept": "application/json",
-                        },
-                        body: formData,
-                    });
-
-                    const result = await response.json();
-
-                    if (response.ok) {
-                        alert("Data tanaman berhasil diperbarui!");
-                        window.location.href = "/admin/dashboard"; 
-                    } else {
-                        alert("Gagal: " + (result.message || "Terjadi kesalahan"));
-                    }
-                } catch (error) {
-                    console.error("Error:", error);
-                    alert("Terjadi kesalahan koneksi.");
-                } finally {
+                    // const submitBtn = editForm.querySelector('button[type="submit"]'); // Removed this line
                     submitBtn.textContent = "Simpan Perubahan";
                     submitBtn.disabled = false;
                 }

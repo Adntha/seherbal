@@ -8,9 +8,9 @@ use App\Http\Controllers\ChatbotController;
 
 
 // Pastikan route ini sesuai dengan API_URL di JavaScript Anda
-Route::middleware('auth:sanctum')->group(function () {
-    Route::put('/plants/{id}', [PlantController::class, 'update']);
-});
+// Route::middleware('auth:sanctum')->group(function () {
+//     Route::put('/plants/{id}', [PlantController::class, 'update']);
+// });
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +32,9 @@ Route::get('/plants', [PlantController::class, 'index']);
 Route::get('/plants/{id}', [PlantController::class, 'show']);
 
 // Protected routes (perlu login admin dengan Sanctum token)
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/plants', [PlantController::class, 'store']);
-    Route::post('/plants/{id}', [PlantController::class, 'update']); // POST untuk upload file
+    Route::post('/plants/{id}', [PlantController::class, 'update']); // ✅ TAMBAH route update
     Route::delete('/plants/{id}', [PlantController::class, 'destroy']);
     
     Route::post('/logout', [AuthController::class, 'logout']);

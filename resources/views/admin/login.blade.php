@@ -53,5 +53,14 @@
         <img src="{{ asset('images/leaf-small.png') }}" alt="" class="leaf-decoration leaf-bottom-right">
     </div>
 
+    {{-- Script untuk simpan token ke localStorage --}}
+    @if(session('admin_token'))
+    <script>
+        // Simpan token dari session ke localStorage
+        localStorage.setItem('admin_token', '{{ session('admin_token') }}');
+        console.log('Token saved to localStorage');
+    </script>
+    @endif
+
 </body>
 </html>

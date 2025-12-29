@@ -78,20 +78,26 @@ class PlantController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255|unique:plants,name,' . $id,
-            'latin_name' => 'required|string|max:255',
+            'latin_name' => 'nullable|string|max:255',
+            'family' => 'nullable|string|max:255',
+            'part_used' => 'nullable|string|max:255',
+            'keywords' => 'nullable|string|max:255',
             'description' => 'nullable|string',
+            'benefits' => 'nullable|string',
+            'processing' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ], [
             'name.unique' => 'Tanaman dengan nama ini sudah ada di database.',
+            'name.required' => 'Nama tanaman wajib diisi.',
         ]);
 
         if ($request->hasFile('image')) {
-            // Hapus foto lama menggunakan image_path (sesuai field di store)
+            // Hapus foto lama
             if ($plant->image_path && Storage::exists('public/plants/' . $plant->image_path)) {
                 Storage::delete('public/plants/' . $plant->image_path);
             }
 
-            // Simpan foto baru dengan format nama yang sama dengan store()
+            // Simpan foto baru
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/plants', $imageName);
@@ -99,10 +105,17 @@ class PlantController extends Controller
             $plant->image_path = $imageName;
         }
 
+        // ✅ Update ALL fields
         $plant->name = $request->name;
-        $plant->latin_name = $request->latin_name;
         $plant->slug = Str::slug($request->name);
-        $plant->description = $request->description;
+        $plant->latin_name = $request->latin_name ?? $plant->latin_name; // ✅ Keep old value if null
+        $plant->family = $request->family ?? $plant->family;
+        $plant->part_used = $request->part_used ?? $plant->part_used;
+        $plant->description = $request->description ?? $plant->description; // ✅ Keep old value if null
+        $plant->keywords = $request->keywords ?? $plant->keywords;
+        $plant->benefits = $request->benefits ?? $plant->benefits; // ✅ Keep old value if null
+        $plant->processing = $request->processing ?? $plant->processing; // ✅ Keep old value if null
+        $plant->side_effects = $request->side_effects ?? $plant->side_effects;
         $plant->save();
 
         // Karena update dipanggil lewat AJAX/Fetch di JS, kita kembalikan JSON

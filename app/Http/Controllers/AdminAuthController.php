@@ -9,7 +9,7 @@ class AdminAuthController extends Controller
 {
     public function showLoginForm()
     {
-        return view('admin.login'); // Mengarah ke file resources/views/admin/login.blade.php
+        return view('admin.login');
     }
 
     public function login(Request $request)
@@ -17,24 +17,28 @@ class AdminAuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-        //     // Jika berhasil login, arahkan ke dashboard admin
+            $user = Auth::user();
+            
+            // ✅ Generate Sanctum token untuk API
+            $token = $user->createToken('admin-token')->plainTextToken;
+            
+            // ✅ Simpan token ke session untuk diambil frontend
+            $request->session()->put('admin_token', $token);
+            
+            // Redirect ke dashboard
             return redirect()->intended('/admin/dashboard');
         }
-        //     // Membersihkan catatan navigasi sebelumnya agar tidak balik ke home
-        //     $request->session()->regenerate();
 
-        //     $request->session()->forget('url.intended');
-            
-        //     // GUNAKAN redirect() langsung ke URL, jangan gunakan intended()
-        //     return redirect('/admin/dashboard');
-        // }
         // Jika gagal, balikkan ke halaman login dengan pesan error
         return back()->withErrors(['email' => 'Email atau Password salah!']);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
+        // Hapus semua token user
+        $request->user()->tokens()->delete();
+        
         Auth::logout();
         return redirect('/admin/login');
     }
-}   
+}
