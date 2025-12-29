@@ -43,6 +43,7 @@ class PlantSeeder extends Seeder
             // Mapping dari struktur JSON ke struktur database
             Plant::create([
                 'name' => $plantData['Nama_Lokal'],
+                'slug' => \Illuminate\Support\Str::slug($plantData['Nama_Lokal']), // Generate slug dari nama
                 'latin_name' => $plantData['Nama_Ilmiah_Latin'],
                 'family' => $plantData['Kategori_Famili'],
                 'part_used' => $plantData['Bagian_Digunakan'],

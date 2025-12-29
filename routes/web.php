@@ -30,7 +30,7 @@ Route::get('/', [TanamanController::class, 'index']);
 Route::get('/plants/all', [App\Http\Controllers\TanamanController::class, 'loadAll']);
 
 // Route untuk halaman detail tanaman
-Route::get('/tanaman/{id}', [TanamanController::class, 'show'])->name('tanaman.detail');
+Route::get('/tanaman/{slug}', [TanamanController::class, 'show'])->name('tanaman.detail');
 
 // Route untuk user mengirim pesan contact (PUBLIC - tidak perlu login)
 Route::post('/contact/send', [MessageController::class, 'store'])->name('contact.send');

@@ -11,6 +11,7 @@ class Plant extends Model
 
     protected $fillable = [
         'name',
+        'slug', // Tambah slug untuk mass assignment
         'latin_name',
         'family',
         'part_used',

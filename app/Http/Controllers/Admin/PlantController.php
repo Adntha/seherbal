@@ -30,12 +30,20 @@ class PlantController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:plants,name',
             'latin_name' => 'required|string|max:255',
             'description' => 'nullable',
             'benefits' => 'nullable',
             'usage' => 'nullable',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ], [
+            'name.unique' => 'Tanaman dengan nama ini sudah ada di database. Silakan gunakan nama lain.',
+            'name.required' => 'Nama tanaman wajib diisi.',
+            'latin_name.required' => 'Nama latin wajib diisi.',
+            'image.required' => 'Gambar tanaman wajib diunggah.',
+            'image.image' => 'File harus berupa gambar.',
+            'image.mimes' => 'Format gambar harus jpeg, png, atau jpg.',
+            'image.max' => 'Ukuran gambar maksimal 2MB.',
         ]);
 
         $imageName = null;
@@ -47,11 +55,15 @@ class PlantController extends Controller
 
         Plant::create([
             'name' => $request->name,
-            'latin_name' => $request->latin_name,
             'slug' => Str::slug($request->name),
+            'latin_name' => $request->latin_name,
+            'family' => $request->family ?? 'Tidak Diketahui', // Default value
+            'part_used' => $request->part_used ?? 'Tidak Diketahui', // Default value
             'description' => $request->description,
+            'keywords' => $request->keywords ?? '', // Default empty string
             'benefits' => $request->benefits,
-            'usage' => $request->usage,
+            'processing' => $request->usage ?? 'Konsultasikan dengan ahli', // Default value
+            'side_effects' => $request->side_effects ?? null, // Nullable
             'image_path' => $imageName, 
         ]);
 
@@ -65,10 +77,12 @@ class PlantController extends Controller
         $plant = Plant::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:plants,name,' . $id,
             'latin_name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ], [
+            'name.unique' => 'Tanaman dengan nama ini sudah ada di database.',
         ]);
 
         if ($request->hasFile('image')) {

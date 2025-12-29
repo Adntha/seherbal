@@ -9,31 +9,47 @@
 
     <form id="plantForm" action="{{ route('admin.plants.store') }}" method="POST" enctype="multipart/form-data" class="modern-form">
         @csrf
+        
+        {{-- Error Messages --}}
+        @if ($errors->any())
+            <div class="alert alert-danger" style="background-color: #fee2e2; border: 1px solid #dc2626; color: #991b1b; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                <strong>Terjadi kesalahan:</strong>
+                <ul style="margin: 0.5rem 0 0 1.5rem;">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
         <div class="form-grid">
             <div class="form-main">
                 <div class="input-group">
                     <label for="name">Nama Lokal</label>
-                    <input type="text" id="name" name="name" placeholder="Contoh: Lidah Buaya" required>
+                    <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="Contoh: Lidah Buaya" required>
+                    @error('name')
+                        <span style="color: #dc2626; font-size: 0.875rem; margin-top: 0.25rem; display: block;">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="input-group">
                     <label for="latin_name">Nama Latin</label>
-                    <input type="text" id="latin_name" name="latin_name" placeholder="Contoh: Aloe Vera" required>
+                    <input type="text" id="latin_name" name="latin_name" value="{{ old('latin_name') }}" placeholder="Contoh: Aloe Vera" required>
                 </div>
 
                 <div class="input-group">
                     <label for="description">Deskripsi</label>
-                    <textarea id="description" name="description" rows="4" placeholder="Jelaskan ciri-ciri tanaman..."></textarea>
+                    <textarea id="description" name="description" rows="4" placeholder="Jelaskan ciri-ciri tanaman...">{{ old('description') }}</textarea>
                 </div>
 
                 <div class="input-grid">
                     <div class="input-group">
                         <label for="benefits">Manfaat</label>
-                        <textarea id="benefits" name="benefits" rows="3" placeholder="Manfaat kesehatan..."></textarea>
+                        <textarea id="benefits" name="benefits" rows="3" placeholder="Manfaat kesehatan...">{{ old('benefits') }}</textarea>
                     </div>
                     <div class="input-group">
                         <label for="usage">Cara Penggunaan</label>
-                        <textarea id="usage" name="usage" rows="3" placeholder="Cara mengolah..."></textarea>
+                        <textarea id="usage" name="usage" rows="3" placeholder="Cara mengolah...">{{ old('usage') }}</textarea>
                     </div>
                 </div>
             </div>
