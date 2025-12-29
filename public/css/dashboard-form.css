@@ -1,27 +1,58 @@
-.dashboard-container {
-    max-width: 1100px;
-    margin: 20px auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+/* Import Font agar konsisten dengan desain */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-green: #3d7a00; /* Hijau khas SeHerbal */
+    --hover-green: #2d5a00;
+    --bg-light: #e9f2e6;      /* Background hijau pucat dari gambar */
+    --white: #ffffff;
+    --text-dark: #2d3748;
+    --text-muted: #718096;
+    --border-color: #cbd5e0;
 }
 
+body {
+    background-color: var(--bg-light);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--text-dark);
+}
+
+.dashboard-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Header Styling */
 .form-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-    border-bottom: 2px solid #f1f5f9;
-    padding-bottom: 15px;
 }
 
+.form-header h2 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+/* Modern Card Styling */
+.modern-form {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 30px; /* Rounded besar sesuai gambar login */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* Grid Layout */
 .form-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
+    grid-template-columns: 1fr 350px;
+    gap: 40px;
 }
 
+/* Input Styling */
 .input-group {
     margin-bottom: 20px;
 }
@@ -30,64 +61,94 @@
     display: block;
     font-weight: 600;
     margin-bottom: 8px;
-    color: #334155;
+    color: var(--text-dark);
+    font-size: 0.9rem;
 }
 
 .input-group input, 
 .input-group textarea {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    font-family: inherit;
-    transition: border-color 0.3s;
+    padding: 12px 18px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 15px; /* Rounded sedang */
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background-color: transparent;
 }
 
-.input-group input:focus {
-    border-color: #15803d;
+.input-group input:focus, 
+.input-group textarea:focus {
     outline: none;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 4px rgba(61, 122, 0, 0.1);
 }
 
-/* Sidebar & Upload */
-.image-upload-box {
-    border: 2px dashed #cbd5e1;
-    padding: 20px;
-    border-radius: 12px;
-    text-align: center;
-    background: #f8fafc;
-}
-
+/* Image Upload Box (Senada dengan area Login) */
 .preview-container {
-    width: 100%;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #64748b;
-    overflow: hidden;
-    margin-bottom: 15px;
+    background-color: #f8fafc;
+    border: 2px dashed var(--border-color) !important;
+    border-radius: 20px !important;
+    transition: all 0.3s ease;
 }
 
-.preview-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
+.preview-container:hover {
+    background-color: #f0fdf4;
+    border-color: var(--primary-green) !important;
 }
 
+/* Buttons */
 .btn-primary {
-    background: #15803d;
+    background-color: var(--primary-green) !important;
     color: white;
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
+    padding: 14px;
+    border-radius: 50px !important; /* Pill shaped seperti tombol Login */
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    transition: transform 0.2s, background 0.3s;
 }
 
+.btn-primary:hover {
+    background-color: var(--hover-green) !important;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--text-dark);
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: 1.5px solid var(--border-color);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .form-grid { grid-template-columns: 1fr; }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .modern-form {
+        padding: 25px;
+        border-radius: 20px;
+    }
+}
+
+/* Tambahkan ke file dashboard-form.css Anda */
+
+.btn-browse {
+    background-color: var(--primary-green) !important;
+    color: white;
+    padding: 14px;
+    border-radius: 50px !important; /* Pill shaped seperti tombol Login */
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.btn-browse:hover {
+    background-color: var(--hover-green) !important;
+    transform: translateY(-2px);
 }

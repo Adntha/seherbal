@@ -21,8 +21,22 @@ body { background-color: #e9f0e8; color: #333; }
 .content-header h1 { font-size: 26px; }
 .content-header p { color: #666; font-size: 14px; }
 
-.btn-add { background-color: #3e5a23; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; }
+.btn-add {
+    background-color: #15803d; /* Warna hijau */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none; /* Menghilangkan garis bawah link */
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    transition: background 0.3s;
+}
 
+.btn-add:hover {
+    background-color: #166534;
+    color: white;
+}
 /* Controls & Stats */
 .table-controls { display: grid; grid-template-columns: 1fr auto auto; gap: 15px; margin-bottom: 20px; }
 .search-wrapper { background: white; border-radius: 15px; display: flex; align-items: center; padding: 0 15px; }

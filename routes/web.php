@@ -5,6 +5,9 @@ use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\TanamanController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\Admin\PlantController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +43,15 @@ Route::post('/admin/login', [AdminAuthController::class, 'login']);
 
 // Logout
 Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+// routes/web.php
 
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Halaman Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    // Halaman Form Edit (Ini yang sering bikin 404 kalau parameternya tidak pas)
+    Route::get('/plants/{id}/edit', [PlantController::class, 'edit'])->name('plants.edit-tanaman');
+});
 
 // Grup Route Admin (Hanya bisa diakses setelah LOGIN)
 // File: routes/web.php
@@ -50,4 +61,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/messages', [MessageController::class, 'index'])->name('admin.messages'); // Route baru
     Route::delete('/messages/{id}', [MessageController::class, 'destroy'])->name('messages.destroy');
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+    Route::get('/plants/create', [PlantController::class, 'create'])->name('admin.plants.create');
+    Route::post('/plants/store', [PlantController::class, 'store'])->name('admin.plants.store');
 });
+

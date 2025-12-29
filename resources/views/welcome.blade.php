@@ -14,11 +14,17 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Loading Screen -->
     <div id="loading-screen">
-        <div class="loading-spinner"></div>
+        <div class="loading-wrapper">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">
+                <span class="logo-se">Se</span><span class="logo-herbal">Herbal</span>
+            </div>
+        </div>
     </div>
     <!-- Header Section -->
     <header>
@@ -26,7 +32,7 @@
             <div class="header-content">
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="#home" class="logo-se">Se</a><a class="logo-herbal">Herbal</a>
+                    <a href="#home" class="logo-se">Se</a><a href="#home" class="logo-herbal">Herbal</a>
                 </div>
                 
                 <!-- Navigation -->
@@ -91,8 +97,8 @@
         <div class="container">
             <div class="search-container">
                 <div class="search-box">
-                    <i class="search-icon">🔍</i>
-                    <input type="text" id="searchInput" placeholder="Cari">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Cari tanaman herbal...">
                 </div>
             </div>
 
@@ -111,7 +117,7 @@
             </div>
 
             <div class="search-footer" id="searchFooter">
-                <a>Temukan Lebih Banyak</a>
+                <a style="cursor: pointer;">Temukan Lebih Banyak</a>
                 <div class="scroll-indicator">
                     <div class="scroll-arrow"></div>
                 </div>
@@ -128,17 +134,16 @@
             if (searchInput) {
                 searchInput.addEventListener('input', function() {
                     const term = searchInput.value.toLowerCase();
-                    const cards = herbalGrid.getElementsByClassName('herbal-card');
+                    const links = herbalGrid.getElementsByClassName('card-link');
 
-                    Array.from(cards).forEach(card => {
-                        const name = card.querySelector('h3').textContent.toLowerCase();
-                        const latin = card.querySelector('p').textContent.toLowerCase();
+                    Array.from(links).forEach(link => {
+                        const name = link.querySelector('h3').textContent.toLowerCase();
+                        const latin = link.querySelector('p').textContent.toLowerCase();
                         
-                        // Filter berdasarkan Nama Indonesia atau Nama Latin
                         if (name.includes(term) || latin.includes(term)) {
-                            card.style.display = ""; 
+                            link.style.display = "flex"; 
                         } else {
-                            card.style.display = "none";
+                            link.style.display = "none"; 
                         }
                     });
                 });
@@ -147,29 +152,42 @@
             // --- 2. LOGIKA FETCH DATA (Load More) ---
             if (footer) {
                 footer.onclick = function() {
-                    // Pastikan route ini sesuai dengan di web.php
+                    // Tampilkan loading sederhana pada tombol
+                    const footerText = footer.querySelector('a');
+                    footerText.textContent = 'Memuat...';
+
                     fetch('/plants/all')
                         .then(res => res.json())
                         .then(data => {
-                            // Kosongkan grid sebelum mengisi 35 data baru
+                            // Kosongkan grid agar data baru (35 data) menggantikan data awal
                             herbalGrid.innerHTML = '';
                             
                             data.forEach(item => {
-                                herbalGrid.insertAdjacentHTML('beforeend', `
-                                    <div class="herbal-card">
-                                        <img src="/storage/plants/${item.image_path}" alt="${item.name}">
-                                        <div class="card-info">
-                                            <h3>${item.name}</h3>
-                                            <p>${item.latin_name}</p>
+                                // PERBAIKAN: Membungkus dengan <a> agar bisa diklik ke detail
+                                const cardHtml = `
+                                    <a href="/tanaman/${item.slug}" class="card-link">
+                                        <div class="herbal-card">
+                                            <img src="/storage/plants/${item.image_path}" alt="${item.name}">
+                                            <div class="card-info">
+                                                <h3>${item.name}</h3>
+                                                <p>${item.latin_name}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                `);
+                                    </a>
+                                `;
+                                herbalGrid.insertAdjacentHTML('beforeend', cardHtml);
                             });
                             
-                            // Sembunyikan tombol setelah semua data tampil
+                            // Sembunyikan footer setelah semua data dimuat
                             footer.style.display = 'none';
+                            
+                            // Scroll halus sedikit ke bawah agar user tahu ada data baru
+                            window.scrollBy({ top: 150, behavior: 'smooth' });
                         })
-                        .catch(err => console.error("Gagal memuat data:", err));
+                        .catch(err => {
+                            console.error("Gagal memuat data:", err);
+                            footerText.textContent = 'Gagal memuat, coba lagi';
+                        });
                 };
             }
         });
@@ -379,5 +397,77 @@
         }
     </style>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const header = document.querySelector('header');
+        const sections = document.querySelectorAll('section'); // Pastikan Home, Cari, Kontak pakai tag <section>
+
+        const options = {
+            root: null,
+            threshold: 0.5, // Berubah saat 10% section masuk layar
+            rootMargin: "-20px 0px 0px 0px" // Offset seukuran tinggi header
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Hapus semua class theme sebelumnya
+                    header.classList.remove('theme-home', 'theme-cari', 'theme-kontak');
+                    
+                    // Tambah class sesuai ID section yang sedang aktif
+                    const sectionId = entry.target.id;
+                    header.classList.add('theme-' + sectionId);
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+        const headerHeight = document.querySelector('header').offsetHeight;
+
+        function changeActiveMenu() {
+            let scrollPosition = window.scrollY + headerHeight + 100; // Tambah offset agar lebih sensitif
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Jalankan fungsi saat scroll
+        window.addEventListener('scroll', changeActiveMenu);
+        
+        // Jalankan sekali saat halaman dimuat untuk set menu Home sebagai active awal
+        changeActiveMenu();
+    });
+    </script>
+    <script>
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loading-screen');
+            // Beri jeda sedikit agar user bisa melihat animasi logo sejenak
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 800);
+        });
+    </script>
 </body>
 </html>
+

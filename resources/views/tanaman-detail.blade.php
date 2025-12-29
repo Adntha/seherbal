@@ -11,40 +11,62 @@
 <body>
     <div class="page-wrapper">
         <header class="top-nav">
-            <div class="container">
-                <a href="{{ url('/') }}#cari" class="btn-back">
-                    <i class="fa-solid fa-arrow-left"></i> 
-                    <span>Kembali ke Jelajah</span>
-                </a>
+            <div class="container nav-container">
+                <div class="logo">Se<span>Herbal</span></div>
+                <nav class="main-menu">
+                    <a href="/">Home</a>
+                    <a href="/#cari" class="active">Cari</a>
+                    <a href="/#kontak">Kontak</a>
+                </nav>
             </div>
         </header>
 
         <main class="container">
-            <article class="plant-detail">
-                <figure class="plant-banner">
-                    <img src="{{ asset('storage/plants/' . $tanaman->image_path) }}" alt="{{ $tanaman->name }}">
-                    <figcaption class="plant-header-text">
-                        <h1 class="plant-name">{{ $tanaman->name }}</h1>
-                        <p class="plant-latin"><i>{{ $tanaman->latin_name }}</i></p>
-                    </figcaption>
-                </figure>
+            <div class="navigation-container">
+                <a href="{{ url('/') }}#cari" class="btn-back-modern">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Kembali ke Penjelajahan</span>
+                </a>
+            </div>
 
-                <div class="plant-body">
-                    <section class="info-block main-desc">
-                        <h2 class="section-title"><i class="fa-solid fa-leaf"></i> Deskripsi</h2>
-                        <p class="text-content">{{ $tanaman->description ?? 'Deskripsi belum tersedia.' }}</p>
-                    </section>
+            <article class="plant-card">
+                <div class="plant-flex-container">
+                    <div class="plant-media-side">
+                        <div class="image-wrapper">
+                            <img src="{{ asset('storage/plants/' . $tanaman->image_path) }}" alt="{{ $tanaman->name }}">
+                        </div>
+                        
+                        <!-- <div class="recipe-section">
+                            <h3><i class="fa-solid fa-leaf"></i> Resep Ramuan Tradisional</h3>
+                            <div class="recipe-content">
+                                {!! nl2br(e($tanaman->usage)) !!}
+                            </div>
+                        </div> -->
+                    </div>
 
-                    <div class="info-grid">
-                        <section class="info-block card-style">
-                            <h2 class="section-title"><i class="fa-solid fa-hand-holding-medical"></i> Manfaat</h2>
-                            <p class="text-content">{{ $tanaman->benefits ?? 'Manfaat belum tersedia.' }}</p>
-                        </section>
+                    <div class="plant-info-side">
+                        <div class="plant-titles">
+                            <h1 class="plant-name">{{ $tanaman->name }}</h1>
+                            <span class="family-badge">{{ $tanaman->family ?? 'Zingiberaceae' }}</span>
+                        </div>
 
-                        <section class="info-block card-style">
-                            <h2 class="section-title"><i class="fa-solid fa-mortar-pestle"></i> Penggunaan</h2>
-                            <p class="text-content">{{ $tanaman->usage ?? 'Cara penggunaan belum tersedia.' }}</p>
-                        </section>
+                        <p class="description-text">
+                            <strong>{{ $tanaman->name }}</strong> (<i>{{ $tanaman->latin_name }}</i>) 
+                            {{ $tanaman->description }}
+                        </p>
+
+                        <div class="detail-box">
+                            <div class="detail-header">
+                                <i class="fa-solid fa-book-medical"></i> Detail Tanaman
+                            </div>
+                            <ul class="detail-list">
+                                <li><strong>Nama Ilmiah:</strong> <i>{{ $tanaman->latin_name }}</i></li>
+                                <li><strong>Famili:</strong> {{ $tanaman->family ?? '-' }}</li>
+                                <li><strong>Manfaat Utama:</strong> {{ $tanaman->benefits }}</li>
+                                <li><strong>Habitat:</strong> {{ $tanaman->habitat ?? 'Daerah Tropis' }}</li>
+                                <li><strong>Bagian yang digunakan:</strong> {{ $tanaman->part_used ?? 'Rimpang' }}</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </article>

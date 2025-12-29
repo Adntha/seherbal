@@ -6,6 +6,12 @@ use App\Http\Controllers\Api\PlantController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\ChatbotController;
 
+
+// Pastikan route ini sesuai dengan API_URL di JavaScript Anda
+Route::middleware('auth:sanctum')->group(function () {
+    Route::put('/plants/{id}', [PlantController::class, 'update']);
+});
+
 /*
 |--------------------------------------------------------------------------
 | API Routes

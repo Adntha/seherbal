@@ -27,7 +27,9 @@
                     <h1>Daftar Tanaman</h1>
                     <p>Manajemen Konten</p>
                 </div>
-                <button class="btn-add">+ Tambah Tanaman</button>
+                <a href="{{ route('admin.plants.create') }}" class="btn-add" style="text-decoration: none; display: inline-block;">
+                    + Tambah Tanaman
+                </a>
             </header>
 
             <section class="table-controls">

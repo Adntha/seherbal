@@ -17,11 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
 // ========================================
 
 function setupEventListeners() {
-    // Tombol tambah tanaman
-    const btnAdd = document.querySelector(".btn-add");
-    if (btnAdd) {
-        btnAdd.addEventListener("click", showCreateModal);
-    }
+    // // Tombol tambah tanaman
+    // const btnAdd = document.querySelector(".btn-add");
+    // if (btnAdd) {
+    //     btnAdd.addEventListener("click", showCreateModal);
+    // }
 
     // Search input
     const searchInput = document.getElementById("searchInput");
@@ -108,15 +108,15 @@ function updateStats(total) {
 // CREATE PLANT
 // ========================================
 
-function showCreateModal() {
-    alert(
-        "Fitur modal form akan ditambahkan. Untuk sementara, gunakan Postman atau cURL untuk testing API."
-    );
-    console.log("Create Plant - Endpoint: POST /api/plants");
-    console.log(
-        "Required fields: name, latin_name, family, part_used, keywords, description, benefits, processing, image"
-    );
-}
+// function showCreateModal() {
+//     alert(
+//         "Fitur modal form akan ditambahkan. Untuk sementara, gunakan Postman atau cURL untuk testing API."
+//     );
+//     console.log("Create Plant - Endpoint: POST /api/plants");
+//     console.log(
+//         "Required fields: name, latin_name, family, part_used, keywords, description, benefits, processing, image"
+//     );
+// }
 
 async function createPlant(formData) {
     try {
@@ -148,22 +148,11 @@ async function createPlant(formData) {
 // UPDATE PLANT
 // ========================================
 
-async function editPlant(id) {
-    try {
-        // Ambil data tanaman
-        const response = await fetch(`${API_URL}/${id}`);
-        const result = await response.json();
-
-        if (result.status === "success") {
-            console.log("Edit Plant Data:", result.data);
-            alert(
-                `Edit tanaman: ${result.data.name}\n\nFitur modal edit akan ditambahkan. Untuk sementara, gunakan Postman untuk testing.`
-            );
-        }
-    } catch (error) {
-        console.error("Error fetching plant:", error);
-        alert("Gagal memuat data tanaman");
-    }
+// Ganti fungsi editPlant yang lama dengan ini
+function editPlant(id) {
+    // Karena Laravel menggunakan named route admin.plants.edit-tanaman
+    // Biasanya URL-nya berbentuk /admin/plants/{id}/edit
+    window.location.href = `/admin/plants/${id}/edit`;
 }
 
 async function updatePlant(id, formData) {
@@ -196,36 +185,19 @@ async function updatePlant(id, formData) {
 // DELETE PLANT
 // ========================================
 
-async function deletePlant(id, name) {
-    if (
-        !confirm(
-            `Yakin ingin menghapus tanaman "${name}"?\n\nData yang dihapus tidak dapat dikembalikan.`
-        )
-    ) {
-        return;
-    }
-
-    try {
-        const response = await fetch(`${API_URL}/${id}`, {
-            method: "DELETE",
+async function deletePlant(id) {
+    if (confirm('Apakah Anda yakin ingin menghapus tanaman ini?')) {
+        const response = await fetch(`/api/plants/${id}`, {
+            method: 'DELETE',
             headers: {
-                Authorization: `Bearer ${authToken}`,
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
+                'Authorization': `Bearer ${localStorage.getItem('admin_token')}`,
+                'Accept': 'application/json'
+            }
         });
-
-        const result = await response.json();
-
-        if (result.status === "success") {
-            alert(result.message);
-            loadPlants(); // Reload table
-        } else {
-            alert(result.message || "Gagal menghapus tanaman");
+        
+        if (response.ok) {
+            location.reload(); // Refresh tabel
         }
-    } catch (error) {
-        console.error("Error deleting plant:", error);
-        alert("Gagal menghapus tanaman. Pastikan Anda sudah login.");
     }
 }
 
