@@ -13,8 +13,11 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
+        $email = env('ADMIN_EMAIL', 'admin@seherbal.com');
+        $password = env('ADMIN_PASSWORD', 'admin123');
+
         // Cek apakah admin sudah ada
-        $adminExists = User::where('email', 'admin@seherbal.com')->first();
+        $adminExists = User::where('email', $email)->first();
         
         if ($adminExists) {
             $this->command->info('Admin sudah ada di database!');
@@ -24,12 +27,10 @@ class AdminSeeder extends Seeder
         // Buat akun admin baru
         User::create([
             'name' => 'Admin SeHerbal',
-            'email' => 'admin@seherbal.com',
-            'password' => Hash::make('admin123'), // Password: admin123
+            'email' => $email,
+            'password' => Hash::make($password), // Password: admin123
         ]);
 
         $this->command->info('✅ Admin berhasil dibuat!');
-        $this->command->info('Email: admin@seherbal.com');
-        $this->command->info('Password: admin123');
     }
 }
