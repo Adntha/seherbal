@@ -6,17 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Plant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class PlantController extends Controller
 {
-    // --- TAMBAHKAN INI: Menampilkan halaman Edit ---
+    // --- Menampilkan halaman Edit ---
     public function edit($id)
     {
-        // Mencari data tanaman, jika tidak ada akan otomatis 404
         $plant = Plant::findOrFail($id);
-
-        // Pastikan path view ini benar: resources/views/admin/plants/edit-tanaman.blade.php
         return view('admin.plants.edit-tanaman', compact('plant'));
     }
 
@@ -30,41 +27,44 @@ class PlantController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:plants,name',
+            'name'       => 'required|string|max:255|unique:plants,name',
             'latin_name' => 'required|string|max:255',
             'description' => 'nullable',
-            'benefits' => 'nullable',
-            'usage' => 'nullable',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'benefits'   => 'nullable',
+            'usage'      => 'nullable',
+            'image'      => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ], [
-            'name.unique' => 'Tanaman dengan nama ini sudah ada di database. Silakan gunakan nama lain.',
-            'name.required' => 'Nama tanaman wajib diisi.',
+            'name.unique'      => 'Tanaman dengan nama ini sudah ada di database. Silakan gunakan nama lain.',
+            'name.required'    => 'Nama tanaman wajib diisi.',
             'latin_name.required' => 'Nama latin wajib diisi.',
-            'image.required' => 'Gambar tanaman wajib diunggah.',
-            'image.image' => 'File harus berupa gambar.',
-            'image.mimes' => 'Format gambar harus jpeg, png, atau jpg.',
-            'image.max' => 'Ukuran gambar maksimal 2MB.',
+            'image.required'   => 'Gambar tanaman wajib diunggah.',
+            'image.image'      => 'File harus berupa gambar.',
+            'image.mimes'      => 'Format gambar harus jpeg, png, atau jpg.',
+            'image.max'        => 'Ukuran gambar maksimal 2MB.',
         ]);
 
-        $imageName = null;
+        // Upload ke Cloudinary
+        $imagePath = null;
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/plants', $imageName);
+            $uploadedFile = Cloudinary::upload(
+                $request->file('image')->getRealPath(),
+                ['folder' => 'seherbal/plants']
+            );
+            $imagePath = $uploadedFile->getSecurePath();
         }
 
         Plant::create([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name),
-            'latin_name' => $request->latin_name,
-            'family' => $request->family ?? 'Tidak Diketahui', // Default value
-            'part_used' => $request->part_used ?? 'Tidak Diketahui', // Default value
+            'name'        => $request->name,
+            'slug'        => Str::slug($request->name),
+            'latin_name'  => $request->latin_name,
+            'family'      => $request->family ?? 'Tidak Diketahui',
+            'part_used'   => $request->part_used ?? 'Tidak Diketahui',
             'description' => $request->description,
-            'keywords' => $request->keywords ?? '', // Default empty string
-            'benefits' => $request->benefits,
-            'processing' => $request->usage ?? 'Konsultasikan dengan ahli', // Default value
-            'side_effects' => $request->side_effects ?? null, // Nullable
-            'image_path' => $imageName, 
+            'keywords'    => $request->keywords ?? '',
+            'benefits'    => $request->benefits,
+            'processing'  => $request->usage ?? 'Konsultasikan dengan ahli',
+            'side_effects' => $request->side_effects ?? null,
+            'image_path'  => $imagePath,
         ]);
 
         return redirect()->route('admin.dashboard')
@@ -77,52 +77,45 @@ class PlantController extends Controller
         $plant = Plant::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|string|max:255|unique:plants,name,' . $id,
-            'latin_name' => 'nullable|string|max:255',
-            'family' => 'nullable|string|max:255',
-            'part_used' => 'nullable|string|max:255',
-            'keywords' => 'nullable|string|max:255',
+            'name'        => 'required|string|max:255|unique:plants,name,' . $id,
+            'latin_name'  => 'nullable|string|max:255',
+            'family'      => 'nullable|string|max:255',
+            'part_used'   => 'nullable|string|max:255',
+            'keywords'    => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'benefits' => 'nullable|string',
-            'processing' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'benefits'    => 'nullable|string',
+            'processing'  => 'nullable|string',
+            'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ], [
-            'name.unique' => 'Tanaman dengan nama ini sudah ada di database.',
+            'name.unique'   => 'Tanaman dengan nama ini sudah ada di database.',
             'name.required' => 'Nama tanaman wajib diisi.',
         ]);
 
         if ($request->hasFile('image')) {
-            // Hapus foto lama
-            if ($plant->image_path && Storage::exists('public/plants/' . $plant->image_path)) {
-                Storage::delete('public/plants/' . $plant->image_path);
-            }
-
-            // Simpan foto baru
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/plants', $imageName);
-            
-            $plant->image_path = $imageName;
+            // Upload gambar baru ke Cloudinary
+            $uploadedFile = Cloudinary::upload(
+                $request->file('image')->getRealPath(),
+                ['folder' => 'seherbal/plants']
+            );
+            $plant->image_path = $uploadedFile->getSecurePath();
         }
 
-        // ✅ Update ALL fields
-        $plant->name = $request->name;
-        $plant->slug = Str::slug($request->name);
-        $plant->latin_name = $request->latin_name ?? $plant->latin_name; // ✅ Keep old value if null
-        $plant->family = $request->family ?? $plant->family;
-        $plant->part_used = $request->part_used ?? $plant->part_used;
-        $plant->description = $request->description ?? $plant->description; // ✅ Keep old value if null
-        $plant->keywords = $request->keywords ?? $plant->keywords;
-        $plant->benefits = $request->benefits ?? $plant->benefits; // ✅ Keep old value if null
-        $plant->processing = $request->processing ?? $plant->processing; // ✅ Keep old value if null
+        $plant->name        = $request->name;
+        $plant->slug        = Str::slug($request->name);
+        $plant->latin_name  = $request->latin_name  ?? $plant->latin_name;
+        $plant->family      = $request->family      ?? $plant->family;
+        $plant->part_used   = $request->part_used   ?? $plant->part_used;
+        $plant->description = $request->description ?? $plant->description;
+        $plant->keywords    = $request->keywords    ?? $plant->keywords;
+        $plant->benefits    = $request->benefits    ?? $plant->benefits;
+        $plant->processing  = $request->processing  ?? $plant->processing;
         $plant->side_effects = $request->side_effects ?? $plant->side_effects;
         $plant->save();
 
-        // Karena update dipanggil lewat AJAX/Fetch di JS, kita kembalikan JSON
         return response()->json([
-            'status' => 'success',
+            'status'  => 'success',
             'message' => 'Tanaman berhasil diperbarui',
-            'data' => $plant
+            'data'    => $plant,
         ]);
     }
 }
